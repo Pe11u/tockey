@@ -7,23 +7,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* 明るい水色と黄緑を基調としたカラーパレット */
+            --main-bg-start: #e0f2f7; /* 非常に淡い水色 */
+            --main-bg-end: #eafbea; /* 非常に淡い黄緑 */
 
-            --main-bg-start: #e0f2f7; 
-            --main-bg-end: #eafbea; 
-
-            --header-footer-bg-start: rgba(135, 206, 235, 0.9); 
-            --header-footer-bg-end: rgba(173, 216, 230, 0.9); 
+            --header-footer-bg-start: rgba(135, 206, 235, 0.9); /* 明るい水色 (半透明) */
+            --header-footer-bg-end: rgba(173, 216, 230, 0.9); /* 少し濃い水色 (半透明) */
 
             --text-color: #333;
-            --heading-color: #2c3e50; 
-            --accent-color: #4CAF50; 
-            --light-accent-color: #d1f7d3; 
+            --heading-color: #2c3e50; /* 見出しは落ち着いた色で可読性確保 */
+            --accent-color: #4CAF50; /* 鮮やかな黄緑をアクセントに */
+            --light-accent-color: #d1f7d3; /* 薄い黄緑 */
             --border-radius: 8px;
-            --card-bg-color: rgba(255, 255, 255, 0.85); 
+            --card-bg-color: rgba(255, 255, 255, 0.85); /* セクションの背景 (半透明) */
             --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-
-            --link-color: #2196F3; 
-            --link-hover-color: #1976D2; 
+            
+            --link-color: #2196F3; /* リンク色を明るい青に */
+            --link-hover-color: #1976D2; /* リンクホバー色 */
         }
 
         body {
@@ -56,7 +56,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 2.2em;
             font-weight: 700;
-            color: white; 
+            color: white; /* ロゴの色は白のままにしてヘッダーとのコントラストを維持 */
             text-decoration: none;
             margin-right: auto;
             white-space: nowrap;
@@ -75,13 +75,13 @@
         }
 
         header nav a:hover {
-            color: var(--accent-color); 
+            color: var(--accent-color); /* ホバーで黄緑に変化 */
             background-color: rgba(255, 255, 255, 0.2);
             border-color: var(--accent-color);
         }
 
         .hero {
-
+            /* 背景画像も明るいトーンを意識、あるいは水色・黄緑系のグラデーションにする */
             background: linear-gradient(rgba(173, 216, 230, 0.6), rgba(144, 238, 144, 0.6)), url('https://via.placeholder.com/1500x500/87CEEB/98FB98?text=Tockey+Server+Background');
             background-size: cover;
             background-position: center center;
@@ -150,7 +150,7 @@
             color: var(--heading-color);
             font-size: 2.2em;
             margin-bottom: 20px;
-            border-bottom: 3px solid var(--accent-color); 
+            border-bottom: 3px solid var(--accent-color); /* 黄緑のアクセントライン */
             padding-bottom: 10px;
             display: inline-block;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -173,7 +173,7 @@
 
         .section ul li::before {
             content: '➤';
-            color: var(--accent-color); 
+            color: var(--accent-color); /* 黄緑の矢印 */
             position: absolute;
             left: 0;
             font-weight: bold;
@@ -184,7 +184,7 @@
         }
 
         .section a {
-            color: var(--link-color); 
+            color: var(--link-color); /* 明るい青のリンク色 */
             text-decoration: none;
             font-weight: bold;
             transition: color 0.3s ease;
@@ -205,6 +205,7 @@
             backdrop-filter: blur(5px);
         }
 
+        /* レスポンシブデザイン */
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
