@@ -84,6 +84,8 @@
             min-height: 550px;
             box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.2);
             position: relative;
+            /* 黒い四角形を追加するための設定 */
+            z-index: 0; /* heroのコンテンツが四角形の上に表示されるようにする */
         }
         
         .hero::before {
@@ -97,8 +99,19 @@
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            opacity: 0.7;
             z-index: -1;
+        }
+
+        /* 新しく追加する黒い四角形 */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* 透明度0.4の黒 */
+            z-index: -1; /* 背景画像のさらに後ろに配置 */
         }
         
         .hero h1 {
@@ -110,13 +123,18 @@
             max-width: 1200px;
             padding-left: 5%;
             line-height: 1.1;
+            position: relative; /* z-indexを適用するために必要 */
+            z-index: 1; /* コンテンツが四角形の上に表示されるようにする */
         }
+        
         .hero p {
             font-size: 1.4em;
             max-width: 800px;
             margin-top: 0;
             margin-left: 5%;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            position: relative; /* z-indexを適用するために必要 */
+            z-index: 1; /* コンテンツが四角形の上に表示されるようにする */
         }
         main {
             flex-grow: 1;
@@ -253,7 +271,7 @@
                 <h2>連絡</h2>
                 <p>Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。</p>
                 <ul>
-                    <li><a href="https://discord.gg/R7sNzggpNw" rel="noopener noreferrer"  target="_blank">公式Discordサーバー</a></li>
+                    <li><a href="https://discord.gg/R7sNzggpNw" rel="noopener noreferrer" target="_blank">公式Discordサーバー</a></li>
                     <li><strong>鯖主Discord:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">@tarutaru_jpn</span></li>
                 </ul>
                 <p>通常、1日以内に返信させていただきます。お気軽にお声がけください！</p>
@@ -261,11 +279,11 @@
             <div class="section" id="plugins">
                 <h2>プラグイン</h2>
                 <ul>
-                    <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp"  target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。</li>
-                    <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html"  target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。</li>
-                    <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp"  target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。</li>
-                    <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/"  target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。</li>
-                    <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/"  target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。使用時には鯖主に連絡。</li>
+                    <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。</li>
+                    <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。</li>
+                    <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。</li>
+                    <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/" target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。</li>
+                    <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/" target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。使用時には鯖主に連絡。</li>
                 </ul>
             </div>
         </section>
