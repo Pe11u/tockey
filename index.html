@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tockey Server 公式サイト</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="tockey.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --main-bg-start: #e0f2f7;
@@ -71,7 +73,7 @@
             border-color: var(--accent-color);
         }
         .hero {
-            background: linear-gradient(rgba(173, 216, 230, 0.6), rgba(144, 238, 144, 0.6)), url('https://via.placeholder.com/1500x500/87CEEB/98FB98?text=Tockey+Server+Background');
+            background: url('tockey.png');
             background-size: cover;
             background-position: center center;
             color: black;
@@ -81,6 +83,22 @@
             justify-content: center;
             min-height: 550px;
             box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('tockey.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.7;
+            z-index: -1;
         }
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
