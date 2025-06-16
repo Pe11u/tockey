@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tockey Server 公式サイト</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg-color: #f0f2f5;
+            --header-footer-bg-color: #2c3e50;
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --accent-color: #3498db;
+            --light-accent-color: #ecf0f1;
+            --border-radius: 8px;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--header-footer-bg-color);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            margin-right: auto; /* 左寄せにする */
+            white-space: nowrap; /* テキストが改行されないように */
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 2px solid transparent; /* ボタンの枠線を追加 */
+        }
+
+        header nav a:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x500/3498db/ffffff?text=Tockey+Server+Background') no-repeat center center/cover; /* 背景画像を仮で設定 */
+            color: white;
+            text-align: center;
+            padding: 100px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 500px; /* 適切な高さを確保 */
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            text-align: left; /* 左寄せ */
+            width: 100%;
+            max-width: 1200px;
+            margin-left: 0;
+            padding-left: 5%;
+            box-sizing: border-box;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin-top: 0;
+            margin-left: 5%; /* 左寄せ */
+            text-align: left; /* 左寄せ */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .section h2 {
+            color: var(--heading-color);
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block; /* 下線をコンテンツ幅に合わせる */
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .section ul li::before {
+            content: '➤'; /* 矢印アイコン */
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--header-footer-bg-color);
+            color: white;
+            text-align: center;
+            padding: 25px 5%;
+            margin-top: 50px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* レスポンシブデザイン */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 15px 5%;
+            }
+
+            header nav {
+                margin-top: 15px;
+                width: 100%;
+                display: flex;
+                justify-content: flex-start; /* ボタンを左寄せにする */
+                gap: 10px; /* ボタン間のスペース */
+            }
+
+            header nav a {
+                margin-left: 0; /* モバイルでマージンをリセット */
+            }
+
+            .hero h1 {
+                font-size: 3em;
+                text-align: left;
+                padding-left: 5%;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+                text-align: left;
+                padding-left: 5%;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            header .logo {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Tockey Server</a>
+        <nav>
+            <a href="rules.html">ルール</a>
+            <a href="terms.html">利用規約</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Tockey Server</h1>
+            <p>
+                Tockey Serverは、あなたの創造力を最大限に引き出すマインクラフトサーバーです。自由な建築、仲間との協力、そして無限の冒険があなたを待っています。初心者からベテランまで、誰もが楽しめる環境を提供し、最高のサーバー体験をお届けします。さあ、Tockey Serverで新たな物語を始めましょう！
+            </p>
+        </section>
+
+        <section class="container">
+            <div class="section" id="concept">
+                <h2>コンセプト</h2>
+                <p>
+                    Tockey Serverは、プレイヤー一人ひとりが主役となれる場所を目指しています。私たちは、以下の3つの柱を大切にしています。
+                </p>
+                <ul>
+                    <li>**クラン制:** プレイヤーはクランを作ったり、すでにあるクランに参加して各々の拠点を発展させていきます。他クランと協定を結んだり戦争を起こしたりすることができます。</li>
+                    <li>**ボイスチャット:** ゲーム内で声を使ってほかのプレイヤーと話すことができます。</li>
+                    <li>**ログインボーナス:** デイリーボーナスとプレイ時間ボーナスに分かれていて、連続してサーバーに参加することで徐々に報酬の質と量が上がっていきます。</li>
+                </ul>
+                <p>
+                    あなたの創造性と冒険心を刺激する、忘れられない体験をお約束します。
+                </p>
+            </div>
+
+            <div class="section" id="information">
+                <h2>情報</h2>
+                <p>
+                    Tockey Serverに関する重要な情報はこちらでご確認いただけます。
+                </p>
+                <ul>
+                    <li>**サーバーIP:** `tocket.f5.si`</li>
+                    <li>**バージョン:** Paper 1.21.4　参加自体は1.17~最新バージョンまで可能</li>
+                    <li>**対応プラットフォーム:** Java版, 統合版</li>
+                    <li>**稼働時間:** 24時間365日</li>
+                    <li>**鯖再起:** 毎日12:00と0:00</li>
+                </ul>
+                <p>
+                    その他、ご不明な点がありましたらお気軽にお問い合わせください。
+                </p>
+            </div>
+
+            <div class="section" id="contact">
+                <h2>連絡</h2>
+                <p>
+                    Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。
+                </p>
+                <ul>
+                    <li>**Discordサーバー:** <a href="https://discord.gg/R7sNzggpNw">Tockey Server Discordに参加する</a></li>
+                    <li>**お問い合わせフォーム:** <a href="contact.html">こちらをクリック</a></li>
+                    <li>**鯖主Discord:** @tarutaru_jpn</li>
+                </ul>
+                <p>
+                    通常、1日以内に返信させていただきます。お気軽にお声がけください！
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tockey Server. All rights reserved.</p>
+    </footer>
+</body>
+</html>
