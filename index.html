@@ -123,6 +123,9 @@
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
+        #plugins {
+            grid-column: span 3;
+        }
         .section h2 {
             color: var(--heading-color);
             font-size: 2.2em;
@@ -180,6 +183,7 @@
             .hero h1 { font-size: 3.5em; padding-left: 5%; }
             .hero p { font-size: 1.2em; padding-left: 5%; }
             .container { grid-template-columns: 1fr; }
+            #plugins { grid-column: auto; }
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.8em; }
@@ -227,25 +231,3 @@
             <div class="section" id="contact">
                 <h2>連絡</h2>
                 <p>Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。</p>
-                <ul>
-                    <li><a href="https://discord.gg/R7sNzggpNw" rel="noopener noreferrer">公式Discordサーバー</a></li>
-                    <li><strong>鯖主Discord:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">@tarutaru_jpn</span></li>
-                </ul>
-                <p>通常、1日以内に返信させていただきます。お気軽にお声がけください！</p>
-            </div>
-            <div class="section" id="plugins">
-                <h2>プラグイン</h2>
-                <ul>
-                    <li><strong>Towny:</strong> プレイヤーが町を設立・管理できるプラグイン。</li>
-                    <li><strong>TownyChat:</strong> Townyに対応したチャット管理機能を提供。</li>
-                    <li><strong>LoginRewards:</strong> ログインボーナスを管理し、連続ログインに応じた報酬を付与。</li>
-                    <li><strong>SimpleVoiceChat:</strong> サーバー内でのボイスチャットを可能にする。</li>
-                </ul>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Tockey Server. All rights reserved.</p>
-    </footer>
-</body>
-</html>
