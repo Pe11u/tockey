@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tockey Server</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="tockey.png" type="image/png">
+    <style>
+        :root {
+            --main-bg-start: #e0f2f7;
+            --main-bg-end: #eafbea;
+            --header-footer-bg-start: rgba(220, 255, 220, 0.9);
+            --header-footer-bg-end: rgba(220, 255, 220, 0.9);
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --accent-color: #4CAF50;
+            --light-accent-color: #d1f7d3;
+            --border-radius: 8px;
+            --card-bg-color: rgba(255, 255, 255, 0.85);
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            --link-color: #2196F3;
+            --link-hover-color: #1976D2;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, var(--main-bg-start), var(--main-bg-end));
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
+            color: black;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+            margin-right: auto;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        header nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+        }
+        header nav a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-color);
+        }
+        header nav a.active {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--accent-color);
+        }
+        main {
+            flex-grow: 1;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+        .section {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(3px);
+        }
+        .section:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .section h2 {
+            color: var(--heading-color);
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .section h3 {
+            color: var(--heading-color);
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--light-accent-color);
+            padding-bottom: 8px;
+        }
+        .section p {
+            margin-bottom: 15px;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        .section ul li::before {
+            content: '➤';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .section ol {
+            list-style: decimal;
+            padding-left: 30px;
+        }
+        .section ol li {
+            margin-bottom: 10px;
+        }
+        .section ul li strong, .section ol li strong {
+            color: var(--heading-color);
+        }
+        .section a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        .section a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+        footer {
+            background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
+            color: black;
+            text-align: center;
+            padding: 25px 5%;
+            margin-top: 50px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(5px);
+        }
+        b {
+            color: #7FFFD4;
+            font-size: 1.2em;
+        }
+        .note {
+            background-color: var(--light-accent-color);
+            border-left: 5px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            color: var(--heading-color);
+        }
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; padding: 15px 5%; }
+            header nav { margin-top: 15px; display: flex; gap: 10px; }
+            header nav a { margin-left: 0; }
+            .container { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 480px) {
+            header .logo { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">Tockey Server</a>
+        <nav>
+            <a href="rules.html" class="active">ルール</a>
+            <a href="terms.html">利用規約</a>
+        </nav>
+    </header>
+    <main>
+        <section class="container">
+            <div class="section" id="general-rules">
+                <h2>基本的な行動規範</h2>
+                <p>サーバー内でのプレイヤーの行動に関する一般的なルールです。</p>
+                <ul>
+                    <li><strong>公平なプレイの維持:</strong> チート、エクスプロイト、バグ・グリッチ、およびX-rayやAuto-Mineなどの他のプレイヤーが不利益を被る行為は一切禁止されています。これらはサーバーのバランスと公平性を著しく損なう行為と見なされます。</li>
+                    <li><strong>迷惑行為の禁止:</strong> 他のプレイヤーに対する誹謗中傷、ハラスメント、個人情報の収集・公開、またはサーバー運営を妨害する行為は禁止されています。</li>
+                    <li><strong>サーバーへの負荷軽減:</strong> 過度なレッドストーン回路や大規模な高頻度チャンクローダーなど、サーバーに著しく負荷をかける建築や装置の設置はご遠慮ください。不明な場合は管理者に相談してください。</li>
+                </ul>
+
+                <h3>罰則と通報</h3>
+                <ul>
+                    <li><strong>ルール違反への処置:</strong> ルールが破られた場合、そのプレイヤーは違反の内容に応じて、一時的なBAN、永久BAN、リセット、アイテム没収などの相応の処置を受けます。処置の決定はサーバー運営チームが行います。</li>
+                    <li><strong>違反者の告発と報酬:</strong> まだ発覚していないルールを破ったプレイヤーを運営に通報し、その情報が違反行為の特定に繋がった場合、ケースによっては相応の報酬が与えられることがあります。これはサーバーの健全な運営にご協力いただくためのものです。</li>
+                </ul>
+                <div class="note">
+                    <p><strong>注意:</strong> 全てのルールは、Tockey Serverにおける「自由と協働」のテーマを維持し、公平で楽しいゲーム環境を提供するために設けられています。不明な点があれば、お気軽に管理者に問い合わせてください。</p>
+                </div>
+            </div>
+
+            <div class="section" id="war-rules">
+                <h2>戦争に関するルール</h2>
+                <p>クラン間の交流と対抗意識を促進するための戦争システムに関するルールです。公式な戦争と非公式な戦争が存在します。</p>
+
+                <h3>1. 公式な戦争 (Official War)</h3>
+                <p>クラン同士が事前に合意の上で宣戦布告を行い、サーバーシステムによって正式に記録される戦争です。以下のルールが適用されます。</p>
+                <ol>
+                    <li><strong>参加資格:</strong> クランに加入しているプレイヤーのみが公式な戦争を開始または参加できます。無所属のプレイヤーは、クランに加入しているプレイヤーやその拠点に対して攻撃・窃盗を行うことはできません。（無所属同士、またはクランから無所属のプレイヤーへの一方的な攻撃・窃盗は、公式な戦争の範疇外で許可されます。）</li>
+                    <li><strong>宣戦布告の義務:</strong> 他クランに対して攻撃や窃盗を行う際は、必ず先にゲーム内コマンド <code>/clan war start [他クラン名]</code> を使用して戦争を宣言し、相手クランの承諾を得る必要があります。承諾なしの攻撃・窃盗はルール違反となります。</li>
+                    <li><strong>敗戦国への物資付与 (主催者以外):</strong> 戦争が事実上終了し、明確な敗戦国が存在する場合、敗戦国の戦争主催者以外のプレイヤーには、サーバーから以下の物資が付与されます。
+                        <ul>
+                            <li><strong>付与物資:</strong> オークの板材 128個、オークの原木 64個、鉄インゴット 32個、ダイアモンド 16個</li>
+                            <li><strong>条件:</b> この付与資源が戦勝クランの合計資源より多い場合は付与資源を半減します。この物資は公式な戦争でのみ付与されます。</li>
+                            <li><strong>受け取り方法:</strong> これらの物資を受け取る際は、必ず管理者に連絡を取ってください。</li>
+                        </ul>
+                    </li>
+                    <li><strong>敗戦国による損害負担 (宣戦布告国の場合):</strong> もし敗戦国が宣戦布告を行った側である場合、戦勝国の損害（破壊された建築物や失われたアイテムなど）を負担する責任があります。この損害負担は公式な戦争でのみ適用されます。</li>
+                    <li><strong>再戦期間の制限:</strong> 敗戦国に対して、戦争終了後1週間以内は新たに戦争を仕掛けないでください。これは敗戦クランが体制を立て直すための猶予期間です。この制限は公式な戦争でのみ適用されます。</li>
+                    <li><strong>防御的攻撃の許可:</strong> 戦争が正式に始まる前に相手クランから攻撃を受けた場合は、自衛のための限定的かつ一時的な攻撃は許可されます。</li>
+                </ol>
+
+                <h3>2. 非公式な戦争 (Unofficial War)</h3>
+                <p>クラン間の個人的な争いや小競り合いなど、サーバーシステムに記録されない形で行われる戦争です。以下の特徴があります。</p>
+                <ul>
+                    <li><strong>宣戦布告:</strong> 個人的で非公式な戦争は、宣戦布告は任意です。事前に相手に伝えるかどうかは当事者間の自由です。</li>
+                    <li><strong>物資付与・損害負担:</strong> 公式な戦争のような物資付与や損害負担のルールは適用されません。</li>
+                    <li><strong>再戦期間の制限:</strong> 非公式な戦争には再戦期間の制限はありません。</li>
+                </ul>
+                <div class="note">
+                    <p><strong>重要:</strong> プレイヤー間の合意が尊重されますが、過度な嫌がらせやサーバーの安定性を損なう行為は、非公式な戦争であっても基本的な行動規範（禁止事項）に抵触する可能性があります。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Tockey Server. All rights reserved.</p>
+    </footer>
+</body>
+</html>
