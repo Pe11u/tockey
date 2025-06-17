@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tockey Server 利用規約およびプライバシーポリシー</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="tockey.png" type="image/png">
+    <style>
+
+        :root {
+            --main-bg-start: #e0f2f7;
+            --main-bg-end: #eafbea;
+            --header-footer-bg-start: rgba(220, 255, 220, 0.9);
+            --header-footer-bg-end: rgba(220, 255, 220, 0.9);
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --accent-color: #4CAF50;
+            --light-accent-color: #d1f7d3;
+            --border-radius: 8px;
+            --card-bg-color: rgba(255, 255, 255, 0.85);
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            --link-color: #2196F3;
+            --link-hover-color: #1976D2;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, var(--main-bg-start), var(--main-bg-end));
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
+            color: black;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(3px); 
+        }
+
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+            margin-right: auto;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+        }
+
+        header nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; 
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+        }
+
+        header nav a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        header nav a.active {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        main {
+            flex-grow: 1; 
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .section {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(3px); 
+        }
+
+        .section:hover {
+            transform: translateY(-8px); 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+        }
+
+        .section h2 {
+            color: var(--heading-color);
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block; 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h3 {
+            color: var(--heading-color);
+            font-size: 1.6em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px dashed var(--light-accent-color); 
+            padding-bottom: 8px;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+        }
+
+        .section ul {
+            list-style: none; 
+            padding: 0;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .section ul li::before {
+            content: '➤'; 
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .section ol {
+            list-style: decimal;
+            padding-left: 30px;
+        }
+
+        .section ol li {
+            margin-bottom: 10px;
+        }
+
+        .section ul li strong, .section ol li strong {
+            color: var(--heading-color);
+        }
+
+        .section a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .section a:hover {
+            color: var(--link-hover-color);
+            text-decoration: underline;
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
+            color: black;
+            text-align: center;
+            padding: 25px 5%;
+            margin-top: 50px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15); 
+            backdrop-filter: blur(5px);
+        }
+
+        b {
+            color: #3CB371; 
+            font-size: 1.2em;
+        }
+
+        .note {
+            background-color: var(--light-accent-color);
+            border-left: 5px solid var(--accent-color); 
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: var(--border-radius);
+            font-style: italic;
+            color: var(--heading-color);
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: flex-start; padding: 15px 5%; }
+            header nav { margin-top: 15px; display: flex; gap: 10px; }
+            header nav a { margin-left: 0; }
+            .container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            header .logo { font-size: 1.8em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Tockey Server</a>
+        <nav>
+            <a href="rules.html">ルール</a>
+            <a href="terms.html" class="active">利用規約</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+
+            <div class="section" id="terms-of-service">
+                <h2>利用規約</h2>
+                <p>本利用規約（以下、「本規約」といいます。）は、Tockey Server（以下、「本サーバー」といいます。）の利用条件を定めるものです。本サーバーを利用するすべてのプレイヤー（以下、「ユーザー」といいます。）は、本規約に同意したものとみなされます。本規約は、本サーバーの健全な運営と、すべてのユーザーにとって公平かつ安全な環境を維持するために不可欠なものです。</p>
+
+                <h3>1. はじめに</h3>
+                <ul>
+                    <li>本サーバーは、Minecraftゲームを通じてコミュニティ活動を提供するものです。</li>
+                    <li>本サーバーへの参加および利用は、ユーザーの自由意思によるものであり、本規約の全ての条項に同意することを前提とします。</li>
+                    <li>本規約に同意できない場合、本サーバーへの参加および利用は固くお断りいたします。</li>
+                </ul>
+
+                <h3>2. アカウントと登録</h3>
+                <ul>
+                    <li><b>ユーザー情報の正確性:</b> ユーザーは、登録時に提供する情報が真実、正確、完全であることを保証するものとします。虚偽の情報に基づいて登録されたアカウントは、予告なく削除される場合があります。</li>
+                    <li><b>アカウントのセキュリティ:</b> ユーザーは、自身のMinecraftアカウントおよび関連するパスワードの機密性を維持する責任を負います。不正なアクセスや使用があった場合でも、本サーバーは一切の責任を負いません。パスワードは複雑なものを設定し、定期的に変更することを推奨します。</li>
+                    <li><b>アカウントの共有禁止:</b> ユーザーは、自身のTockey Serverアカウントを他のいかなる者とも共有してはなりません。アカウントの共有が発覚した場合、アカウントは一時停止または永久に停止されることがあります。</li>
+                    <li><b>年齢制限:</b> 本サーバーは、すべての年齢層のプレイヤーに開かれていますが、未成年者の利用については、保護者の同意を必要とします。保護者の同意がないまま利用していることが判明した場合、アカウントが制限されることがあります。</li>
+                </ul>
+
+                <h3>3. 禁止事項</h3>
+                <p>ユーザーは、本サーバーの利用において、以下の行為を行ってはなりません。これらの行為は、サーバーの安全性、公平性、コミュニティの秩序を著しく損なうものであり、厳重な処罰の対象となります。</p>
+                <ol>
+                    <li><b>不正行為（チート、エクスプロイト、バグ・グリッチの利用）:</b>
+                        <ul>
+                            <li>ゲーム内の脆弱性やバグを悪用し、不正に利益を得る行為。</li>
+                            <li>X-ray、Auto-Mine、Fly Hack、Speed Hackなどの、公平なゲームプレイを阻害するクライアント改変やMODの使用。</li>
+                            <li>その他、運営が不正と判断する一切の行為。</li>
+                        </ul>
+                    </li>
+                    <li><b>迷惑行為およびハラスメント:</b>
+                        <ul>
+                            <li>他のユーザーに対する誹謗中傷、差別、脅迫、いじめ、嫌がらせ、ストーキング。</li>
+                            <li>個人情報（氏名、住所、電話番号、メールアドレスなど）の収集、公開、または共有。</li>
+                            <li>性的、人種的、宗教的、その他いかなる種類の差別的または攻撃的な内容の表現。</li>
+                        </ul>
+                    </li>
+                    <li><b>サーバーへの不適切な負荷:</b>
+                        <ul>
+                            <li>意図的または過失による、サーバーのパフォーマンスを著しく低下させる建築物（大規模な高頻度レッドストーン回路、チャンクローダーの乱用など）の設置。</li>
+                            <li>DDoS攻撃、ポートスキャン、その他サーバーへの不正アクセスや妨害行為。</li>
+                        </ul>
+                    </li>
+                    <li><b>不正アクセスおよびシステムの改ざん:</b>
+                        <ul>
+                            <li>本サーバーのシステム、データ、または他のユーザーのアカウントへの不正なアクセスを試みる行為。</li>
+                            <li>リバースエンジニアリング、逆アセンブル、デコンパイル、またはサーバーのソフトウェアやコードを改変しようとする行為。</li>
+                            <li>ウイルス、マルウェア、スパイウェア、その他の悪意のあるコードをサーバーまたは他のユーザーに配布する行為。</li>
+                        </ul>
+                    </li>
+                    <li><b>商業目的の利用:</b>
+                        <ul>
+                            <li>本サーバー内で、運営の許可なく商業的な宣伝、広告、勧誘、または物品の販売を行う行為。</li>
+                        </ul>
+                    </li>
+                    <li><b>その他、運営が不適切と判断する行為:</b>
+                        <ul>
+                            <li>公序良俗に反する行為。</li>
+                            <li>法令に違反する行為。</li>
+                            <li>本サーバーの意図しない方法での利用。</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h3>4. 知的財産権</h3>
+                <ul>
+                    <li><b>サーバーコンテンツ:</b> 本サーバー上に存在するすべてのコンテンツ（ロゴ、デザイン、テキスト、コード、サーバープラグインなど）に関する知的財産権は、本サーバーまたはその権利を有する第三者に帰属します。</li>
+                    <li><b>ユーザー生成コンテンツ:</b> ユーザーが本サーバー内で作成・投稿したコンテンツ（建築物、チャットログ、スクリーンショットなど）に関する著作権は、原則としてユーザーに帰属します。ただし、ユーザーは本サーバーに対し、本サーバーの運営、宣伝、改善のために、当該コンテンツを無償で非独占的に使用（複製、公衆送信、改変等を含む）する権利を許諾するものとします。</li>
+                </ul>
+
+                <h3>5. 免責事項</h3>
+                <p>本サーバーは、以下に定める事項について、一切の責任を負わないものとします。</p>
+                <ul>
+                    <li><b>サービスの継続性:</b> 本サーバーは、システムの障害、保守作業、天災、その他不可抗力により、事前の通知なくサービスを中断または終了する場合があります。これによりユーザーに生じた損害について、本サーバーは責任を負いません。</li>
+                    <li><b>情報、コンテンツの正確性:</b> 本サーバー上の情報やコンテンツの正確性、完全性、有用性について、いかなる保証も行いません。</li>
+                    <li><b>損害賠償の制限:</b> 本サーバーの利用によりユーザーに直接的または間接的に生じた損害（データの消失、機会損失、精神的損害などを含むがこれに限定されない）について、本サーバーは、その予見の有無にかかわらず、一切の責任を負いません。ただし、本サーバーの故意または重大な過失による場合はこの限りではありません。</li>
+                    <li><b>第三者サービス:</b> 本サーバーからリンクされている第三者のウェブサイトやサービスに関する責任は負いません。それらのサービスは、それぞれの利用規約およびプライバシーポリシーに従ってください。</li>
+                </ul>
+
+                <h3>6. サービスの中断・終了</h3>
+                <ul>
+                    <li>本サーバーは、運営上の都合、技術的な問題、法的要請、またはその他の理由により、ユーザーへの事前の通知なく、本サーバーの全部または一部の提供を一時的に中断し、または永続的に終了する権利を有します。</li>
+                    <li>サービスの中断または終了によりユーザーに生じたいかなる損害についても、本サーバーは一切の責任を負いません。</li>
+                </ul>
+
+                <h3>7. 規約の変更</h3>
+                <ul>
+                    <li>本サーバーは、必要に応じて、ユーザーに事前の通知なく本規約を改定できるものとします。</li>
+                    <li>改定された規約は、本サーバー上で公開された時点から効力を生じるものとし、ユーザーは、改定後の規約に同意したものとみなされます。重要な変更については、可能な限り適切な方法で告知します。</li>
+                </ul>
+
+                <h3>8. 準拠法と管轄</h3>
+                <ul>
+                    <li>本規約の解釈および適用は、日本法に準拠するものとします。</li>
+                    <li>本規約または本サーバーの利用に関してユーザーとの間で生じた紛争については、東京地方裁判所を第一審の専属的合意管轄裁判所とします。</li>
+                </ul>
+
+                <div class="note">
+                    <p><b>最終更新日:</b> 2025年6月17日</p>
+                    <p>本規約は、ユーザーと本サーバーの間の完全な合意を構成し、その主題に関する以前または現在のすべての合意、提案、通信に優先します。本規約のいかなる条項も、明示的に放棄されない限り、その効力を失うことはありません。</p>
+                </div>
+            </div>
+
+            <div class="section" id="privacy-policy">
+                <h2>プライバシーポリシー</h2>
+                <p>Tockey Server（以下、「本サーバー」といいます。）は、ユーザーのプライバシー保護を最重要視しています。本プライバシーポリシーは、本サーバーがユーザーから収集する情報の種類、その利用目的、共有方法、および情報保護のために講じる厳格なセキュリティ対策について詳細に説明するものです。本サーバーを利用することにより、ユーザーは本プライバシーポリシーに同意したものとみなされます。</p>
+
+                <h3>1. 収集する情報</h3>
+                <p>本サーバーは、以下の種類の情報を収集する場合があります。</p>
+                <ul>
+                    <li><b>自動的に収集される情報:</b>
+                        <ul>
+                            <li><b>IPアドレス:</b> サーバーへの接続時に自動的に記録されます。不正アクセス防止、サービス地域分析、およびセキュリティ上の脅威の特定のために利用されます。</li>
+                            <li><b>ゲーム内データ:</b> ユーザー名（Minecraft ID）、ゲーム内の行動ログ（ログイン/ログアウト時間、チャット履歴、破壊/設置ブロック、キル/デス数、アイテム使用履歴、コマンド実行履歴など）、サーバーのパフォーマンス向上のための統計データ。これらのデータは、ルール違反の監視、サーバーの最適化、およびユーザー体験の向上に利用されます。</li>
+                            <li><b>デバイス情報:</b> 接続元デバイスの種類、オペレーティングシステム、ブラウザの種類などの基本的な情報。これらはサービス改善のための分析に利用されます。</li>
+                        </ul>
+                    </li>
+                    <li><b>ユーザーが提供する情報:</b>
+                        <ul>
+                            <li><b>登録情報:</b> アカウント登録や特定のサービス利用時にユーザーが任意で提供する情報（例: メールアドレス、Discord ID）。これらは、アカウント管理、連絡、パスワードリセット、およびユーザーサポートのために利用されます。</li>
+                            <li><b>お問い合わせ内容:</b> ユーザーがサポート窓口を通じて提供する、質問、報告、フィードバックなどの内容。これらは問い合わせへの対応、問題解決、およびサービス改善のために利用されます。</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>2. 情報の利用目的</h3>
+                <p>収集した情報は、以下の目的のために利用されます。</p>
+                <ul>
+                    <li>本サーバーサービスの提供、運用、維持、および改善。</li>
+                    <li>ユーザーアカウントの管理およびユーザー認証。</li>
+                    <li>本サーバーのルールおよび利用規約の執行、不正行為の監視および防止。</li>
+                    <li>ユーザーサポートの提供および問い合わせへの対応。</li>
+                    <li>サーバーのパフォーマンス分析、統計データの作成、および機能改善のための研究開発。</li>
+                    <li>セキュリティイベントの監視、検出、および対応。</li>
+                    <li>法的義務の遵守。</li>
+                </ul>
+
+                <h3>3. 情報の共有と開示</h3>
+                <p>本サーバーは、ユーザーの個人情報を細心の注意を払って取り扱い、以下のいずれかに該当する場合を除き、第三者と共有または開示することはありません。</p>
+                <ul>
+                    <li><b>法的要請に基づく場合:</b> 法令に基づく開示義務、裁判所の命令、政府機関からの正当な要請があった場合。</li>
+                    <li><b>ユーザーの同意がある場合:</b> ユーザーから明確な同意を得た場合。</li>
+                    <li><b>業務委託先への提供:</b> サービス提供のために必要な範囲内で、信頼できる第三者サービスプロバイダー（例: サーバーホスティング、データベース管理、セキュリティサービス）に情報を開示する場合があります。この場合、本サーバーは、当該第三者が本プライバシーポリシーと同等またはそれ以上の厳格なデータ保護措置を講じることを契約により義務付けます。</li>
+                    <li><b>サーバーの健全な運営維持のため:</b> 他のプレイヤーの安全確保、本サーバーの財産権保護、および緊急の必要性がある場合。</li>
+                    <li><b>集計または匿名化されたデータ:</b> 個人を特定できない形式に集計または匿名化された統計データは、サービスの改善やマーケティング目的で利用または共有される場合があります。</li>
+                </ul>
+
+                <h3>4. データのセキュリティ</h3>
+                <p>本サーバーは、収集したユーザーデータの機密性、完全性、可用性を保護するために、以下に示す多層的かつ厳格なセキュリティ対策を講じています。</p>
+                <ul>
+                    <li><b>データ暗号化:</b>
+                        <ul>
+                            <li><b>通信時の暗号化:</b> サーバーとユーザーデバイス間のすべての通信は、<b>TLS 1.2以上の強固なプロトコル</b>を使用して暗号化されます。これにより、データの傍受や改ざんから保護されます。</li>
+                            <li><b>保存時の暗号化:</b> ユーザー名、IPアドレス、パスワードハッシュ（保存される場合）、およびその他の機密性の高いゲーム内データは、<b>AES-256などの業界標準の暗号化アルゴリズム</b>を用いて、データベースおよびストレージレベルで暗号化されます。これにより、不正アクセスからのデータ漏洩リスクを最小限に抑えます。</li>
+                        </ul>
+                    </li>
+                    <li><b>アクセス制御と権限管理:</b>
+                        <ul>
+                            <li><b>最小権限の原則:</b> ユーザーデータへのアクセスは、業務上必要最小限の従業員および認可された管理者のみに限定されます。各担当者には、その職務に必要な最低限のアクセス権限のみが付与されます。</li>
+                            <li><b>ロールベースアクセス制御（RBAC）:</b> データへのアクセス権限は、厳密なロールベースで管理され、定期的にレビューおよび更新されます。</li>
+                            <li><b>多要素認証（MFA）:</b> 管理システムへのアクセスには、パスワードに加えて多要素認証を必須とし、不正なログイン試行に対する防御を強化します。</li>
+                            <li><b>アクセスログの監視:</b> すべてのデータアクセスは詳細なログとして記録され、定期的に異常がないか監視および監査されます。</li>
+                        </ul>
+                    </li>
+                    <li><b>ネットワークセキュリティ:</b>
+                        <ul>
+                            <li><b>ファイアウォールと侵入検知システム（IDS/IPS）:</b> ネットワーク境界には、不正なアクセス試行や悪意のあるトラフィックをブロックするための厳格なファイアウォールが設置され、侵入検知・防御システムが24時間体制で監視を行います。</li>
+                            <li><b>セグメンテーション:</b> サーバーネットワークは、異なるサービスやデータの種類に基づいて論理的にセグメント化され、攻撃が拡散するリスクを低減します。</li>
+                        </ul>
+                    </li>
+                    <li><b>脆弱性管理と監査:</b>
+                        <ul>
+                            <li><b>定期的な脆弱性スキャン:</b> サーバーシステム、アプリケーション、データベースに対し、定期的な脆弱性スキャンおよびペネトレーションテストを実施し、既知の脆弱性を迅速に特定し修正します。</li>
+                            <li><b>セキュリティ監査:</b> 第三者機関による定期的なセキュリティ監査を実施し、セキュリティ対策の有効性を客観的に評価します。</li>
+                        </ul>
+                    </li>
+                    <li><b>インシデント対応計画:</b>
+                        <ul>
+                            <li><b>インシデント対応チーム:</b> セキュリティインシデント（データ漏洩、不正アクセスなど）発生時に迅速かつ効果的に対応するための専門チームが編成されています。</li>
+                            <li><b>対応プロトコル:</b> インシデントの検出、封じ込め、根絶、回復、事後分析、および影響を受ける可能性のあるユーザーへの通知に関する詳細なプロトコルが確立されています。</li>
+                        </ul>
+                    </li>
+                    <li><b>従業員のセキュリティ意識向上トレーニング:</b>
+                        <ul>
+                            <li>データを取り扱うすべての従業員に対し、定期的なセキュリティ意識向上トレーニングと最新のセキュリティプラクティスに関する教育を実施し、人的要因によるリスクを最小限に抑えます。</li>
+                        </ul>
+                    </li>
+                    <li><b>バックアップと災害復旧:</b>
+                        <ul>
+                            <li>すべての重要なデータは、複数の場所に安全にバックアップされ、データ損失のリスクを最小限に抑えます。</li>
+                            <li>災害発生時における迅速なサービス復旧のための包括的な災害復旧計画が策定されています。</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <h3>5. データ保持</h3>
+                <ul>
+                    <li>本サーバーは、収集した情報を、サービスの提供に必要な期間、および法的義務の遵守、紛争解決、利用規約の執行のために必要な期間に限り保持します。</li>
+                    <li>特定の種類のデータについては、関連する法令（例: サイバーセキュリティ法、個人情報保護法）に基づき、定められた期間保持される場合があります。</li>
+                </ul>
+
+                <h3>6. 未成年者のプライバシー</h3>
+                <ul>
+                    <li>本サーバーは、13歳未満の児童から意図的に個人情報を収集することはありません。</li>
+                    <li>13歳未満の児童が本サーバーを利用する際は、必ず保護者の同意を得ていただく必要があります。もし13歳未満の児童が保護者の同意なく個人情報を提供したことが判明した場合、本サーバーは当該情報を削除するための合理的な措置を講じます。</li>
+                </ul>
+
+                <h3>7. プライバシーポリシーの変更</h3>
+                <ul>
+                    <li>本サーバーは、本プライバシーポリシーを随時改定する権利を有します。</li>
+                    <li>重要な変更がある場合、本サーバーウェブサイト上での告知、またはユーザーへの直接の通知（可能な場合）を通じて、改定の事実および内容をユーザーに知らせます。</li>
+                    <li>改定後のプライバシーポリシーは、本サーバー上で公開された時点から効力を生じるものとします。</li>
+                </ul>
+
+                <h3>8. お問い合わせ</h3>
+                <p>本プライバシーポリシーまたはユーザーの個人情報に関するご質問、懸念事項、または情報開示、訂正、削除の要求については、以下の連絡先までお問い合わせください。</p>
+                <ul>
+                    <li><b>メールアドレス:</b> support@tockey-server.com (仮のメールアドレスです。実際のサーバー運用に応じて変更してください。)</li>
+                    <li><b>Discord:</b> サーバー内の専用サポートチャンネル</li>
+                </ul>
+                <div class="note">
+                    <p><b>重要:</b> 本プライバシーポリシーは、ユーザーの個人情報を厳重に保護するための当社のコミットメントを反映しています。本サーバーは、日々進化するセキュリティ脅威に対応するため、継続的にセキュリティ対策を強化し、本ポリシーを更新していくものとします。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Tockey Server. All rights reserved.</p>
+    </footer>
+</body>
+</html>
