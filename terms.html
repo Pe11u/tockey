@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tockey Server 利用規約およびプライバシーポリシー</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <title>Tockey Server - ToS, PP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght=400;700&display=swap" rel="stylesheet">
     <link rel="icon" href="tockey.png" type="image/png">
     <style>
 
@@ -47,7 +47,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(3px); 
+            backdrop-filter: blur(3px);  
         }
 
         header .logo {
@@ -58,7 +58,7 @@
             text-decoration: none;
             margin-right: auto;
             white-space: nowrap;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  
         }
 
         header nav a {
@@ -66,7 +66,7 @@
             text-decoration: none;
             margin-left: 25px;
             font-weight: 700;
-            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; 
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;  
             padding: 8px 15px;
             border-radius: 5px;
             border: 2px solid transparent;
@@ -85,7 +85,7 @@
         }
 
         main {
-            flex-grow: 1; 
+            flex-grow: 1;  
         }
 
         .container {
@@ -102,14 +102,14 @@
             padding: 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; 
-            border: 1px solid rgba(255, 255, 255, 0.3); 
-            backdrop-filter: blur(3px); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;  
+            border: 1px solid rgba(255, 255, 255, 0.3);  
+            backdrop-filter: blur(3px);  
         }
 
         .section:hover {
-            transform: translateY(-8px); 
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+            transform: translateY(-8px);  
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);  
         }
 
         .section h2 {
@@ -118,7 +118,7 @@
             margin-bottom: 20px;
             border-bottom: 3px solid var(--accent-color);
             padding-bottom: 10px;
-            display: inline-block; 
+            display: inline-block;  
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
@@ -127,7 +127,7 @@
             font-size: 1.6em;
             margin-top: 30px;
             margin-bottom: 15px;
-            border-bottom: 2px dashed var(--light-accent-color); 
+            border-bottom: 2px dashed var(--light-accent-color);  
             padding-bottom: 8px;
         }
 
@@ -136,7 +136,7 @@
         }
 
         .section ul {
-            list-style: none; 
+            list-style: none;  
             padding: 0;
         }
 
@@ -147,7 +147,7 @@
         }
 
         .section ul li::before {
-            content: '➤'; 
+            content: '➤';  
             color: var(--accent-color);
             position: absolute;
             left: 0;
@@ -185,18 +185,18 @@
             text-align: center;
             padding: 25px 5%;
             margin-top: 50px;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15); 
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);  
             backdrop-filter: blur(5px);
         }
 
         b {
-            color: #3CB371; 
+            color: #3CB371;  
             font-size: 1.2em;
         }
 
         .note {
             background-color: var(--light-accent-color);
-            border-left: 5px solid var(--accent-color); 
+            border-left: 5px solid var(--accent-color);  
             padding: 15px;
             margin: 20px 0;
             border-radius: var(--border-radius);
@@ -375,50 +375,28 @@
                     <li><b>集計または匿名化されたデータ:</b> 個人を特定できない形式に集計または匿名化された統計データは、サービスの改善やマーケティング目的で利用または共有される場合があります。</li>
                 </ul>
 
-                <h3>4. データのセキュリティ</h3>
-                <p>本サーバーは、収集したユーザーデータの機密性、完全性、可用性を保護するために、以下に示す多層的かつ厳格なセキュリティ対策を講じています。</p>
+                <h3>4. セキュリティ対策と不正行為の防止</h3>
+                <p>本サーバーは、ユーザーの安全なゲーム体験を確保し、公平性を維持するため、<b>不正行為や不適切なツールの使用に対して、以下のセキュリティ対策と監視体制を確立しています。</b></p>
                 <ul>
-                    <li><b>データ暗号化:</b>
+                    <li><b>不正アクセスおよび一般的な攻撃対策:</b>
                         <ul>
-                            <li><b>通信時の暗号化:</b> サーバーとユーザーデバイス間のすべての通信は、<b>TLS 1.2以上の強固なプロトコル</b>を使用して暗号化されます。これにより、データの傍受や改ざんから保護されます。</li>
-                            <li><b>保存時の暗号化:</b> ユーザー名、IPアドレス、パスワードハッシュ（保存される場合）、およびその他の機密性の高いゲーム内データは、<b>AES-256などの業界標準の暗号化アルゴリズム</b>を用いて、データベースおよびストレージレベルで暗号化されます。これにより、不正アクセスからのデータ漏洩リスクを最小限に抑えます。</li>
+                            <li>本サーバーは、不正なログイン試行やDDoS攻撃など、一般的なサイバー攻撃からの防御のため、必要なセキュリティ対策を講じています。</li>
+                            <li>サーバーソフトウェアおよび関連システムは、<b>可能な限り最新のセキュリティパッチを適用し、既知の脆弱性への対応</b>に努めます。</li>
+                            <li><b>不審な挙動が検知された場合は、適切な措置</b>を講じ、必要に応じてセキュリティチームが介入します。</li>
+                            <li>本サーバーに対する悪意のある攻撃や無断アクセス、情報収集などが確認された場合、<b>サーバーからBAN（利用停止）措置</b>をとることがあります。</li>
                         </ul>
                     </li>
-                    <li><b>アクセス制御と権限管理:</b>
+                    <li><b>不正ツール（チート・クライアント改変）の検知と防止:</b>
                         <ul>
-                            <li><b>最小権限の原則:</b> ユーザーデータへのアクセスは、業務上必要最小限の従業員および認可された管理者のみに限定されます。各担当者には、その職務に必要な最低限のアクセス権限のみが付与されます。</li>
-                            <li><b>ロールベースアクセス制御（RBAC）:</b> データへのアクセス権限は、厳密なロールベースで管理され、定期的にレビューおよび更新されます。</li>
-                            <li><b>多要素認証（MFA）:</b> 管理システムへのアクセスには、パスワードに加えて多要素認証を必須とし、不正なログイン試行に対する防御を強化します。</li>
-                            <li><b>アクセスログの監視:</b> すべてのデータアクセスは詳細なログとして記録され、定期的に異常がないか監視および監査されます。</li>
+                            <li>本サーバーは、X-ray、Auto-Mine、Fly Hack、Speed Hack、Kill Auraなど、ゲームの公平性を著しく損なう<b>不正クライアントやチートツールの使用を検知するため、アンチチートシステム</b>を導入しています。</li>
+                            <li>このシステムは、プレイヤーの行動パターンなどを分析し、<b>不正な挙動を識別</b>します。</li>
+                            <li>不正ツールの使用が確認されたプレイヤーは、<b>一時的または永久にサーバーから切断され、厳格な罰則（一時BAN、永久BAN、アカウントリセットなど）</b>が適用されます。</li>
                         </ul>
                     </li>
-                    <li><b>ネットワークセキュリティ:</b>
+                    <li><b>プレイヤーによる通報制度と協力:</b>
                         <ul>
-                            <li><b>ファイアウォールと侵入検知システム（IDS/IPS）:</b> ネットワーク境界には、不正なアクセス試行や悪意のあるトラフィックをブロックするための厳格なファイアウォールが設置され、侵入検知・防御システムが24時間体制で監視を行います。</li>
-                            <li><b>セグメンテーション:</b> サーバーネットワークは、異なるサービスやデータの種類に基づいて論理的にセグメント化され、攻撃が拡散するリスクを低減します。</li>
-                        </ul>
-                    </li>
-                    <li><b>脆弱性管理と監査:</b>
-                        <ul>
-                            <li><b>定期的な脆弱性スキャン:</b> サーバーシステム、アプリケーション、データベースに対し、定期的な脆弱性スキャンおよびペネトレーションテストを実施し、既知の脆弱性を迅速に特定し修正します。</li>
-                            <li><b>セキュリティ監査:</b> 第三者機関による定期的なセキュリティ監査を実施し、セキュリティ対策の有効性を客観的に評価します。</li>
-                        </ul>
-                    </li>
-                    <li><b>インシデント対応計画:</b>
-                        <ul>
-                            <li><b>インシデント対応チーム:</b> セキュリティインシデント（データ漏洩、不正アクセスなど）発生時に迅速かつ効果的に対応するための専門チームが編成されています。</li>
-                            <li><b>対応プロトコル:</b> インシデントの検出、封じ込め、根絶、回復、事後分析、および影響を受ける可能性のあるユーザーへの通知に関する詳細なプロトコルが確立されています。</li>
-                        </ul>
-                    </li>
-                    <li><b>従業員のセキュリティ意識向上トレーニング:</b>
-                        <ul>
-                            <li>データを取り扱うすべての従業員に対し、定期的なセキュリティ意識向上トレーニングと最新のセキュリティプラクティスに関する教育を実施し、人的要因によるリスクを最小限に抑えます。</li>
-                        </ul>
-                    </li>
-                    <li><b>バックアップと災害復旧:</b>
-                        <ul>
-                            <li>すべての重要なデータは、複数の場所に安全にバックアップされ、データ損失のリスクを最小限に抑えます。</li>
-                            <li>災害発生時における迅速なサービス復旧のための包括的な災害復旧計画が策定されています。</li>
+                            <li>サーバーのセキュリティと公平性を維持するため、ユーザーからのご協力も不可欠です。<b>不正行為や不審な挙動を発見した場合は、速やかに運営チームへ通報</b>してください。</li>
+                            <li>提供された情報は、厳重に調査され、サーバーのセキュリティ強化および不正行為の防止に役立てられます。</li>
                         </ul>
                     </li>
                 </ul>
