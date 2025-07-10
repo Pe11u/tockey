@@ -134,14 +134,11 @@
             max-width: 1200px;
             margin: 50px auto;
             padding: 0 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
         }
 
         .main-content-grid {
             display: grid;
-            grid-template-columns: 3fr 1fr;
+            grid-template-columns: 3fr 1fr; /* Main content takes 3 parts, News takes 1 part */
             gap: 30px;
         }
 
@@ -167,9 +164,7 @@
         #plugins {
             grid-column: span 2;
         }
-        #contact {
-            grid-column: span 2;
-        }
+        /* #contact に grid-column: span 2; を削除 */
         .section h2 {
             color: var(--heading-color);
             font-size: 2.2em;
@@ -224,6 +219,8 @@
             color: #7FFFD4;
             font-size: 1.2em;
         }
+
+        /* NEWS Section specific styles */
         .news-date-group {
             margin-bottom: 20px;
         }
@@ -259,13 +256,13 @@
             padding: 3px 8px;
             border-radius: 4px;
             margin-right: 10px;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevents shrinking */
             font-size: 0.85em;
         }
 
         @media (max-width: 992px) {
             .main-content-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
             }
             .left-column {
                 grid-template-columns: 1fr;
@@ -287,8 +284,7 @@
             .hero h1 { font-size: 2.8em; }
             .hero p { font-size: 1em; }
             header .logo { font-size: 1.8em; }
-        }
-    </style>
+        </style>
 </head>
 <body>
     <header>
@@ -377,10 +373,15 @@
                         return;
                     }
 
+                    // 日付で降順にソート (新しい順)
                     news.sort((a, b) => {
+                        // 日付文字列をYYYY/MM/DD形式からYYYY-MM-DD形式に変換して比較
                         const getDateString = (dateStr) => {
-                            const match = dateStr.match(/(\d{4})\/(\d{2})\/(\d{2})/);
-                            return match ? `${match[1]}-${match[2]}-${match[3]}` : '';
+                            const parts = dateStr.split('/');
+                            if (parts.length === 3) {
+                                return `${parts[0]}-${parts[1]}-${parts[2]}`;
+                            }
+                            return dateStr; // 変換できない場合はそのまま返す (エラーになる可能性あり)
                         };
                         const dateA = new Date(getDateString(a.date));
                         const dateB = new Date(getDateString(b.date));
@@ -394,13 +395,19 @@
                         const itemDate = item.date;
 
                         if (itemDate !== currentGroupDate) {
+                            // 新しい日付グループを開始
                             currentGroupDate = itemDate;
                             currentGroupDiv = document.createElement('div');
                             currentGroupDiv.classList.add('news-date-group');
 
                             const dateHeading = document.createElement('div');
                             dateHeading.classList.add('news-date-heading');
-                            dateHeading.textContent = itemDate;
+                            // ニュースの日付に曜日を追加する例（オプション）
+                            const date = new Date(itemDate.replace(/\//g, '-')); // YYYY/MM/DDをYYYY-MM-DDに変換
+                            const options = { weekday: 'short' };
+                            const dayOfWeek = date.toLocaleDateString('ja-JP', options); // 日本語の曜日
+                            dateHeading.textContent = `${itemDate}(${dayOfWeek})`;
+                            
                             currentGroupDiv.appendChild(dateHeading);
                             newsContentDiv.appendChild(currentGroupDiv);
                         }
