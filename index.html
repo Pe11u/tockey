@@ -21,6 +21,8 @@
             --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
             --link-color: #2196F3;
             --link-hover-color: #1976D2;
+            --important-bg-color: #e57373;
+            --important-text-color: #fff;
         }
         body {
             font-family: 'Noto Sans JP', sans-serif;
@@ -136,6 +138,19 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
+
+        .main-content-grid {
+            display: grid;
+            grid-template-columns: 3fr 1fr; /* Main content takes 3 parts, News takes 1 part */
+            gap: 30px;
+        }
+
+        .left-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
         .section {
             background-color: var(--card-bg-color);
             padding: 30px;
@@ -150,7 +165,7 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         #plugins {
-            grid-column: span 3;
+            grid-column: span 2;
         }
         .section h2 {
             color: var(--heading-color);
@@ -206,6 +221,49 @@
             color: #7FFFD4;
             font-size: 1.2em;
         }
+
+        /* NEWS Section specific styles */
+        .news-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+        }
+        .news-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .news-date {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            display: block;
+        }
+        .news-content {
+            font-size: 0.95em;
+        }
+        .news-important {
+            background-color: var(--important-bg-color);
+            color: var(--important-text-color);
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: inline-block;
+            font-size: 0.85em;
+        }
+
+        @media (max-width: 992px) {
+            .main-content-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+            .left-column {
+                grid-template-columns: 1fr;
+            }
+            #plugins {
+                grid-column: auto;
+            }
+        }
         @media (max-width: 768px) {
             header { flex-direction: column; align-items: flex-start; padding: 15px 5%; }
             header nav { margin-top: 15px; display: flex; gap: 10px; }
@@ -236,53 +294,115 @@
             <p>Tockey ServerはMOD無しのサバイバルマインクラフトクロスサーバーです。Java版でも統合版でも、ほとんどのバージョンで参加することができます。このサーバーでは、<b>「自由と協働」</b>をテーマとしており、<b>「クラン」</b>と言うチームに分かれて、<b>メンバーと協力</b>してそれぞれの個性的な拠点を自由に築いていきます。また、クラン同士で<b>同盟</b>を組んだり<b>戦争</b>を始めたりすることが可能で、クランの<b>対抗意識</b>を強め、自分のクランへの<b>帰属意識</b>を高めることが狙いです。</p>
         </section>
         <section class="container">
-            <div class="section" id="concept">
-                <h2>コンセプト</h2>
-                <p>Tockey Serverでは、以下の３つの項目をメイン要素としています。</p>
-                <ul>
-                    <li><strong>クラン制:</strong> プレイヤーはクランを作ったり、すでにあるクランに参加して各々の拠点を発展させていきます。他クランと協定を結んだり戦争を起こしたりすることができます。</li>
-                    <li><strong>ボイスチャット:</strong> ゲーム内で声を使ってほかのプレイヤーと話すことができます。</li>
-                    <li><strong>ログインボーナス:</strong> デイリーボーナスとプレイ時間ボーナスに分かれていて、連続してサーバーに参加することで徐々に報酬の質と量が上がっていきます。</li>
-                </ul>
-                <p>さらに詳しい内容や使い方を確認したい場合は、ページ下部の「プラグイン」をご覧ください。</p>
-            </div>
-            <div class="section" id="information">
-                <h2>情報</h2>
-                <p>Tockey Serverに関する重要な情報はこちらでご確認いただけます。</p>
-                <ul>
-                    <li><strong>Java版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si</span></li>
-                    <li><strong>統合版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si, ポート19132</span></li>
-                    <li><strong>バージョン:</strong> Paper 1.21.4 (参加自体は1.17～最新バージョンまで可能)</li>
-                    <li><strong>対応プラットフォーム:</strong> Java版, 統合版</li>
-                    <li><strong>稼働時間:</strong> 24時間365日</li>
-                    <li><strong>サーバー再起動:</strong> 毎日12:00と0:00</li>
-                </ul>
-                <p>その他、ご不明な点がありましたらお気軽にお問い合わせください。</p>
-            </div>
-            <div class="section" id="contact">
-                <h2>連絡</h2>
-                <p>Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。</p>
-                <ul>
-                    <li><a href="https://discord.gg/R7sNzggpNw" rel="noopener noreferrer" target="_blank">公式Discordサーバー</a></li>
-                    <li><strong>鯖主Discord:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">@tarutaru_jpn</span></li>
-                </ul>
-                <p>通常、1日以内に返信させていただきます。質問やバグ報告など、お気軽にお声がけください！</p>
-            </div>
-            <div class="section" id="plugins">
-                <h2>プラグイン</h2>
-                <ul>
-                    <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。ホームを設定して何時でもテレポートできたり、メンバーの権限を管理したりすることができます。</li>
-                    <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
-                    <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。コマンドを入力することで報酬を得たり、次の日の報酬を確認したりできます。</li>
-                    <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/" target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。マイク・スピーカーミュートや感度、音量やユーザーミュートを細かく管理できます。</li>
-                    <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/" target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。天空トラップや自動畑に向いています。使用時には鯖主に連絡してください。</li>
-                </ul>
-                <p>具体的な使い方については、<a href="https://discord.gg/R7sNzggpNw">Discordサーバー</a>の<span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);"> #遊び方 </span>で確認してください。</p>
+            <div class="main-content-grid">
+                <div class="left-column">
+                    <div class="section" id="concept">
+                        <h2>コンセプト</h2>
+                        <p>Tockey Serverでは、以下の３つの項目をメイン要素としています。</p>
+                        <ul>
+                            <li><strong>クラン制:</strong> プレイヤーはクランを作ったり、すでにあるクランに参加して各々の拠点を発展させていきます。他クランと協定を結んだり戦争を起こしたりすることができます。</li>
+                            <li><strong>ボイスチャット:</strong> ゲーム内で声を使ってほかのプレイヤーと話すことができます。</li>
+                            <li><strong>ログインボーナス:</strong> デイリーボーナスとプレイ時間ボーナスに分かれていて、連続してサーバーに参加することで徐々に報酬の質と量が上がっていきます。</li>
+                        </ul>
+                        <p>さらに詳しい内容や使い方を確認したい場合は、ページ下部の「プラグイン」をご覧ください。</p>
+                    </div>
+                    <div class="section" id="information">
+                        <h2>情報</h2>
+                        <p>Tockey Serverに関する重要な情報はこちらでご確認いただけます。</p>
+                        <ul>
+                            <li><strong>Java版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si</span></li>
+                            <li><strong>統合版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si, ポート19132</span></li>
+                            <li><strong>バージョン:</strong> Paper 1.21.4 (参加自体は1.17～最新バージョンまで可能)</li>
+                            <li><strong>対応プラットフォーム:</strong> Java版, 統合版</li>
+                            <li><strong>稼働時間:</strong> 24時間365日</li>
+                            <li><strong>サーバー再起動:</strong> 毎日12:00と0:00</li>
+                        </ul>
+                        <p>その他、ご不明な点がありましたらお気軽にお問い合わせください。</p>
+                    </div>
+                    <div class="section" id="contact">
+                        <h2>連絡</h2>
+                        <p>Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。</p>
+                        <ul>
+                            <li><a href="https://discord.gg/R7sNzggpNw" rel="noopener noreferrer" target="_blank">公式Discordサーバー</a></li>
+                            <li><strong>鯖主Discord:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">@tarutaru_jpn</span></li>
+                        </ul>
+                        <p>通常、1日以内に返信させていただきます。質問やバグ報告など、お気軽にお声がけください！</p>
+                    </div>
+                    <div class="section" id="plugins">
+                        <h2>プラグイン</h2>
+                        <ul>
+                            <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。ホームを設定して何時でもテレポートできたり、メンバーの権限を管理したりすることができます。</li>
+                            <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
+                            <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。コマンドを入力することで報酬を得たり、次の日の報酬を確認したりできます。</li>
+                            <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/" target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。マイク・スピーカーミュートや感度、音量やユーザーミュートを細かく管理できます。</li>
+                            <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/" target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。天空トラップや自動畑に向いています。使用時には鯖主に連絡してください。</li>
+                        </ul>
+                        <p>具体的な使い方については、<a href="https://discord.gg/R7sNzggpNw">Discordサーバー</a>の<span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);"> #遊び方 </span>で確認してください。</p>
+                    </div>
+                </div>
+                <div class="section" id="news">
+                    <h2>NEWS</h2>
+                    <div id="news-content"></div>
+                </div>
             </div>
         </section>
     </main>
     <footer>
         <p>&copy; 2025 Tockey Server. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('news.json')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('news.jsonの読み込みに失敗しました: ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(news => {
+                    const newsContentDiv = document.getElementById('news-content');
+                    if (news.length === 0) {
+                        newsContentDiv.innerHTML = '<p>現在、新しいニュースはありません。</p>';
+                        return;
+                    }
+
+                    news.sort((a, b) => {
+                        const dateA = new Date(a.date.replace(/(\d{4})\/(\d{2})\/(\d{2})\((.+)\)/, '$1-$2-$3'));
+                        const dateB = new Date(b.date.replace(/(\d{4})\/(\d{2})\/(\d{2})\((.+)\)/, '$1-$2-$3'));
+                        return dateB - dateA;
+                    });
+
+                    news.forEach(item => {
+                        const newsItemDiv = document.createElement('div');
+                        newsItemDiv.classList.add('news-item');
+
+                        const dateSpan = document.createElement('span');
+                        dateSpan.classList.add('news-date');
+                        dateSpan.textContent = item.date;
+
+                        const contentP = document.createElement('p');
+                        contentP.classList.add('news-content');
+
+                        if (item.important) {
+                            const importantSpan = document.createElement('span');
+                            importantSpan.classList.add('news-important');
+                            importantSpan.textContent = '重要';
+                            contentP.appendChild(importantSpan);
+                        }
+                        contentP.appendChild(document.createTextNode(item.content));
+
+                        newsItemDiv.appendChild(dateSpan);
+                        newsItemDiv.appendChild(contentP);
+                        newsContentDiv.appendChild(newsItemDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('ニュースの読み込み中にエラーが発生しました:', error);
+                    const newsContentDiv = document.getElementById('news-content');
+                    newsContentDiv.innerHTML = '<p>ニュースの読み込みに失敗しました。</p>';
+                });
+        });
+    </script>
 </body>
 </html>
