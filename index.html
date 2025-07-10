@@ -138,11 +138,10 @@
 
         .main-content-grid {
             display: grid;
-            /* grid-template-columns: 3fr 1fr;  比率を少し調整 */
             grid-template-columns: 2.5fr 1fr; 
             gap: 30px;
-            /* NEWSセクションと左側のカラムが同じ高さになるように調整 */
-            align-items: start; 
+            /* ここを修正：グリッドアイテムの高さが揃うようにstretchを設定 */
+            align-items: stretch; 
         }
 
         .left-column {
@@ -159,18 +158,20 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(3px);
-            /* min-height を追加して、コンテンツが少なくても高さを確保 */
-            min-height: 150px; 
-            display: flex; /* コンテンツの配置を柔軟にするため */
-            flex-direction: column; /* コンテンツを縦に並べるため */
+            /* min-height は一旦削除。align-items: stretch で高さを調整するため */
+            /* min-height: 150px; */ 
+            display: flex; 
+            flex-direction: column; 
         }
         .section:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        #plugins {
+        /* #plugins の grid-column: span 2; を削除 */
+        /* これにより、プラグインが単独で広がるのではなく、他のセクションと同じ幅になる */
+        /* #plugins {
             grid-column: span 2;
-        }
+        } */
         .section h2 {
             color: var(--heading-color);
             font-size: 2.2em;
@@ -229,8 +230,20 @@
 
         /* NEWS Section specific styles */
         #news {
-            /* flex-grow: 1; /* 親の高さに合わせて伸びる */ */
-            min-height: 400px; /* NEWSセクションの最小高さを設定 */
+            /* flex-grow は不要、親の align-items: stretch が効く */
+            /* min-height も align-items: stretch が効くため不要に */
+            /* min-height: 400px; */ 
+
+            /* NEWSセクション内のコンテンツを垂直方向で均等に配置 */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* コンテンツと下部のスペースを均等に распределить */
+        }
+        #news-content {
+            flex-grow: 1; /* NEWSコンテンツが残りのスペースを埋めるようにする */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* NEWSコンテンツを上から配置 */
         }
         .news-date-group {
             margin-bottom: 20px;
@@ -278,9 +291,10 @@
             .left-column {
                 grid-template-columns: 1fr;
             }
-            #plugins {
+            /* モバイルでは #plugins の span をリセット */
+            /* #plugins {
                 grid-column: auto;
-            }
+            } */
             #news {
                 min-height: initial; /* モバイルでは最小高さをリセット */
             }
@@ -292,7 +306,7 @@
             .hero h1 { font-size: 3.5em; padding-left: 5%; }
             .hero p { font-size: 1.2em; padding-left: 5%; }
             .container { grid-template-columns: 1fr; }
-            #plugins { grid-column: auto; }
+            /* #plugins { grid-column: auto; } */
         }
         @media (max-width: 480px) {
             .hero h1 { font-size: 2.8em; }
@@ -448,7 +462,6 @@
                         }
                         
                         // item.contentから曜日を取り除く（もし含まれている場合）
-                        // スクリーンショットを見る限りcontentには曜日が含まれていないようですが、念のため残しておきます
                         const contentText = item.content.replace(/\(\w+\)$/, '').trim();
                         contentP.appendChild(document.createTextNode(contentText));
 
