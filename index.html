@@ -138,8 +138,11 @@
 
         .main-content-grid {
             display: grid;
-            grid-template-columns: 3fr 1fr; /* Main content takes 3 parts, News takes 1 part */
+            /* grid-template-columns: 3fr 1fr;  比率を少し調整 */
+            grid-template-columns: 2.5fr 1fr; 
             gap: 30px;
+            /* NEWSセクションと左側のカラムが同じ高さになるように調整 */
+            align-items: start; 
         }
 
         .left-column {
@@ -156,6 +159,10 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(3px);
+            /* min-height を追加して、コンテンツが少なくても高さを確保 */
+            min-height: 150px; 
+            display: flex; /* コンテンツの配置を柔軟にするため */
+            flex-direction: column; /* コンテンツを縦に並べるため */
         }
         .section:hover {
             transform: translateY(-8px);
@@ -164,7 +171,6 @@
         #plugins {
             grid-column: span 2;
         }
-        /* #contact に grid-column: span 2; を削除 */
         .section h2 {
             color: var(--heading-color);
             font-size: 2.2em;
@@ -180,6 +186,7 @@
         .section ul {
             list-style: none;
             padding: 0;
+            flex-grow: 1; /* ulが残りのスペースを埋めるようにする */
         }
         .section ul li {
             margin-bottom: 10px;
@@ -221,6 +228,10 @@
         }
 
         /* NEWS Section specific styles */
+        #news {
+            /* flex-grow: 1; /* 親の高さに合わせて伸びる */ */
+            min-height: 400px; /* NEWSセクションの最小高さを設定 */
+        }
         .news-date-group {
             margin-bottom: 20px;
         }
@@ -270,6 +281,9 @@
             #plugins {
                 grid-column: auto;
             }
+            #news {
+                min-height: initial; /* モバイルでは最小高さをリセット */
+            }
         }
         @media (max-width: 768px) {
             header { flex-direction: column; align-items: flex-start; padding: 15px 5%; }
@@ -284,7 +298,8 @@
             .hero h1 { font-size: 2.8em; }
             .hero p { font-size: 1em; }
             header .logo { font-size: 1.8em; }
-        </style>
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -338,7 +353,7 @@
                         <h2>プラグイン</h2>
                         <ul>
                             <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。ホームを設定して何時でもテレポートできたり、メンバーの権限を管理したりすることができます。</li>
-                            <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
+                            <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</b> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
                             <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。コマンドを入力することで報酬を得たり、次の日の報酬を確認したりできます。</li>
                             <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/" target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。マイク・スピーカーミュートや感度、音量やユーザーミュートを細かく管理できます。</li>
                             <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/" target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。天空トラップや自動畑に向いています。使用時には鯖主に連絡してください。</li>
@@ -377,11 +392,15 @@
                     news.sort((a, b) => {
                         // 日付文字列をYYYY/MM/DD形式からYYYY-MM-DD形式に変換して比較
                         const getDateString = (dateStr) => {
-                            const parts = dateStr.split('/');
+                            // 既に曜日が含まれている場合は日付部分のみを抽出
+                            const match = dateStr.match(/^(\d{4}\/\d{2}\/\d{2})/);
+                            const cleanDateStr = match ? match[1] : dateStr;
+                            
+                            const parts = cleanDateStr.split('/');
                             if (parts.length === 3) {
                                 return `${parts[0]}-${parts[1]}-${parts[2]}`;
                             }
-                            return dateStr; // 変換できない場合はそのまま返す (エラーになる可能性あり)
+                            return cleanDateStr; // 変換できない場合はそのまま返す
                         };
                         const dateA = new Date(getDateString(a.date));
                         const dateB = new Date(getDateString(b.date));
@@ -392,21 +411,24 @@
                     let currentGroupDiv = null;
 
                     news.forEach(item => {
-                        const itemDate = item.date;
+                        // item.dateから日付部分のみを抽出し、既に曜日が含まれている場合は取り除く
+                        const dateMatch = item.date.match(/^(\d{4}\/\d{2}\/\d{2})/);
+                        const cleanItemDate = dateMatch ? dateMatch[1] : item.date;
 
-                        if (itemDate !== currentGroupDate) {
+                        if (cleanItemDate !== currentGroupDate) {
                             // 新しい日付グループを開始
-                            currentGroupDate = itemDate;
+                            currentGroupDate = cleanItemDate;
                             currentGroupDiv = document.createElement('div');
                             currentGroupDiv.classList.add('news-date-group');
 
                             const dateHeading = document.createElement('div');
                             dateHeading.classList.add('news-date-heading');
-                            // ニュースの日付に曜日を追加する例（オプション）
-                            const date = new Date(itemDate.replace(/\//g, '-')); // YYYY/MM/DDをYYYY-MM-DDに変換
+                            
+                            // YYYY/MM/DD形式をYYYY-MM-DDに変換してDateオブジェクトを作成
+                            const date = new Date(cleanItemDate.replace(/\//g, '-')); 
                             const options = { weekday: 'short' };
-                            const dayOfWeek = date.toLocaleDateString('ja-JP', options); // 日本語の曜日
-                            dateHeading.textContent = `${itemDate}(${dayOfWeek})`;
+                            const dayOfWeek = date.toLocaleDateString('ja-JP', options); 
+                            dateHeading.textContent = `${cleanItemDate}(${dayOfWeek})`;
                             
                             currentGroupDiv.appendChild(dateHeading);
                             newsContentDiv.appendChild(currentGroupDiv);
@@ -424,7 +446,11 @@
                             importantSpan.textContent = '重要';
                             contentP.appendChild(importantSpan);
                         }
-                        contentP.appendChild(document.createTextNode(item.content));
+                        
+                        // item.contentから曜日を取り除く（もし含まれている場合）
+                        // スクリーンショットを見る限りcontentには曜日が含まれていないようですが、念のため残しておきます
+                        const contentText = item.content.replace(/\(\w+\)$/, '').trim();
+                        contentP.appendChild(document.createTextNode(contentText));
 
                         currentGroupDiv.appendChild(newsItemDiv);
                         newsItemDiv.appendChild(contentP);
