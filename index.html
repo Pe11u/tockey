@@ -223,24 +223,33 @@
         }
 
         /* NEWS Section specific styles */
-        .news-item {
+        .news-date-group {
             margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
         }
-        .news-item:last-child {
-            border-bottom: none;
+        .news-date-group:last-child {
             margin-bottom: 0;
-            padding-bottom: 0;
         }
-        .news-date {
+        .news-date-heading {
             font-weight: bold;
             color: var(--accent-color);
-            margin-bottom: 5px;
+            margin-bottom: 10px;
             display: block;
+            font-size: 1.1em;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 5px;
+        }
+        .news-item {
+            margin-bottom: 10px;
+            padding-left: 5px;
+            position: relative;
+        }
+        .news-item:last-child {
+            margin-bottom: 0;
         }
         .news-content {
             font-size: 0.95em;
+            display: flex;
+            align-items: flex-start;
         }
         .news-important {
             background-color: var(--important-bg-color);
@@ -249,7 +258,7 @@
             padding: 3px 8px;
             border-radius: 4px;
             margin-right: 10px;
-            display: inline-block;
+            flex-shrink: 0; /* Prevents shrinking */
             font-size: 0.85em;
         }
 
@@ -314,7 +323,7 @@
                             <li><strong>統合版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si, ポート19132</span></li>
                             <li><strong>バージョン:</strong> Paper 1.21.4 (参加自体は1.17～最新バージョンまで可能)</li>
                             <li><strong>対応プラットフォーム:</strong> Java版, 統合版</li>
-                            <li><strong>稼働時間:</strong> 24時間365日</li>
+                            <li><strong>稼働時間:</b> 24時間365日</li>
                             <li><strong>サーバー再起動:</strong> 毎日12:00と0:00</li>
                         </ul>
                         <p>その他、ご不明な点がありましたらお気軽にお問い合わせください。</p>
@@ -368,18 +377,36 @@
                     }
 
                     news.sort((a, b) => {
-                        const dateA = new Date(a.date.replace(/(\d{4})\/(\d{2})\/(\d{2})\((.+)\)/, '$1-$2-$3'));
-                        const dateB = new Date(b.date.replace(/(\d{4})\/(\d{2})\/(\d{2})\((.+)\)/, '$1-$2-$3'));
+                        const getDateString = (dateStr) => {
+                            const match = dateStr.match(/(\d{4})\/(\d{2})\/(\d{2})/);
+                            return match ? `${match[1]}-${match[2]}-${match[3]}` : '';
+                        };
+                        const dateA = new Date(getDateString(a.date));
+                        const dateB = new Date(getDateString(b.date));
                         return dateB - dateA;
                     });
 
+                    let currentGroupDate = null;
+                    let currentGroupDiv = null;
+
                     news.forEach(item => {
+                        const itemDate = item.date;
+
+                        if (itemDate !== currentGroupDate) {
+                            // 新しい日付グループを開始
+                            currentGroupDate = itemDate;
+                            currentGroupDiv = document.createElement('div');
+                            currentGroupDiv.classList.add('news-date-group');
+
+                            const dateHeading = document.createElement('div');
+                            dateHeading.classList.add('news-date-heading');
+                            dateHeading.textContent = itemDate;
+                            currentGroupDiv.appendChild(dateHeading);
+                            newsContentDiv.appendChild(currentGroupDiv);
+                        }
+
                         const newsItemDiv = document.createElement('div');
                         newsItemDiv.classList.add('news-item');
-
-                        const dateSpan = document.createElement('span');
-                        dateSpan.classList.add('news-date');
-                        dateSpan.textContent = item.date;
 
                         const contentP = document.createElement('p');
                         contentP.classList.add('news-content');
@@ -392,9 +419,8 @@
                         }
                         contentP.appendChild(document.createTextNode(item.content));
 
-                        newsItemDiv.appendChild(dateSpan);
+                        currentGroupDiv.appendChild(newsItemDiv);
                         newsItemDiv.appendChild(contentP);
-                        newsContentDiv.appendChild(newsItemDiv);
                     });
                 })
                 .catch(error => {
