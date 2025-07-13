@@ -138,16 +138,16 @@
 
         .main-content-grid {
             display: grid;
-            grid-template-columns: 3fr 1fr; /* 左カラムとNEWSカラムの比率 */
+            grid-template-columns: 3fr 1fr; 
             gap: 30px;
-            align-items: start; /* カラムの上端を揃える */
+            align-items: start; 
         }
 
         .left-column {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            /* left-column内での行の高さはコンテンツに合わせる */
+
             grid-auto-rows: minmax(min-content, max-content);
         }
 
@@ -166,7 +166,7 @@
             transform: translateY(-8px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        /* プラグインを左カラム内で2倍の幅にする */
+
         #plugins {
             grid-column: span 2;
         }
@@ -185,7 +185,7 @@
         .section ul {
             list-style: none;
             padding: 0;
-            flex-grow: 1; /* ulが残りのスペースを埋めるようにする */
+            flex-grow: 1; 
         }
         .section ul li {
             margin-bottom: 10px;
@@ -226,17 +226,16 @@
             font-size: 1.2em;
         }
 
-        /* NEWS Section specific styles */
         #news {
             display: flex;
             flex-direction: column;
-            overflow: hidden; /* 高さを超えるコンテンツを非表示 */
-            /* 最大高さを明示的に設定し、JavaScriptで調整する */
-            max-height: 800px; /* 初期値として十分な高さを設定。JavaScriptで精密に調整される。 */
+            overflow: hidden; 
+
         }
         #news-content {
             flex-grow: 1;
             position: relative;
+            overflow: hidden; 
         }
         .news-date-group {
             margin-bottom: 20px;
@@ -288,7 +287,7 @@
                 grid-column: auto;
             }
             #news {
-                max-height: initial; /* モバイルでは高さ制限を解除 */
+                max-height: initial; 
             }
         }
         @media (max-width: 768px) {
@@ -332,19 +331,6 @@
                         </ul>
                         <p>さらに詳しい内容や使い方を確認したい場合は、ページ下部の「プラグイン」をご覧ください。</p>
                     </div>
-                    <div class="section" id="information">
-                        <h2>情報</h2>
-                        <p>Tockey Serverに関する重要な情報はこちらでご確認いただけます。</p>
-                        <ul>
-                            <li><strong>Java版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si</span></li>
-                            <li><strong>統合版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si, ポート19132</span></li>
-                            <li><strong>バージョン:</strong> Paper 1.21.4 (参加自体は1.17～最新バージョンまで可能)</li>
-                            <li><strong>対応プラットフォーム:</strong> Java版, 統合版</li>
-                            <li><strong>稼働時間:</b> 24時間365日</li>
-                            <li><strong>サーバー再起動:</strong> 毎日12:00と0:00</li>
-                        </ul>
-                        <p>その他、ご不明な点がありましたらお気軽にお問い合わせください。</p>
-                    </div>
                     <div class="section" id="contact">
                         <h2>連絡</h2>
                         <p>Tockey Serverへのご質問、ご意見、ご要望などはこちらからご連絡ください。</p>
@@ -358,8 +344,8 @@
                         <h2>プラグイン</h2>
                         <ul>
                             <li><strong><a href="https://wiki-roinujnosde-me.translate.goog/simpleclans/commands-and-permissions/commands?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">SimpleClans</a>:</strong> クランを管理するプラグイン。ホームを設定して何時でもテレポートできたり、メンバーの権限を管理したりすることができます。</li>
-                            <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</b> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
-                            <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</b> ログイン・タイムボーナスプラグイン。コマンドを入力することで報酬を得たり、次の日の報酬を確認したりできます。</li>
+                            <li><strong><a href="https://w.atwiki.jp/teisupeserver/pages/26.html" target="_blank">SimpleTPA</a>:</strong> 他のプレイヤーにテレポート申請・許可ができるプラグイン。誰かにテレポートしたり、全員を自分にテレポートしたりできます。</li>
+                            <li><strong><a href="https://docs-lushplugins-org.translate.goog/lush-rewards/commands-and-permissions?_x_tr_sl=auto&_x_tr_tl=ja&_x_tr_hl=ja&_x_tr_pto=wapp" target="_blank">LushRewards</a>:</strong> ログイン・タイムボーナスプラグイン。コマンドを入力することで報酬を得たり、次の日の報酬を確認したりできます。</li>
                             <li><strong><a href="https://janbocloud.com/minecraft-mod_simple-voice-chat/" target="_blank">SimpleVoiceChat</a>:</strong> サーバー内でのボイスチャットを可能にするプラグイン。マイク・スピーカーミュートや感度、音量やユーザーミュートを細かく管理できます。</li>
                             <li><strong><a href="https://www.spigotmc.org/resources/keepchunks.23307/" target="_blank">KeepChunks</a>:</strong> 指定チャンクを読み込み続けるプラグイン。天空トラップや自動畑に向いています。使用時には鯖主に連絡してください。</li>
                         </ul>
@@ -379,40 +365,44 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // NEWSセクションの初期高さを取得するための監視
             const newsSection = document.getElementById('news');
-            let observer = null;
-            let newsSectionInitialHeight = 0;
+            const newsContentDiv = document.getElementById('news-content');
+            const pluginsSection = document.getElementById('plugins');
 
-            const calculateNewsHeight = () => {
-                // left-column の高さを正確に測定
-                const leftColumn = document.querySelector('.left-column');
-                const computedLeftColumnStyle = getComputedStyle(leftColumn);
-                const leftColumnHeight = leftColumn.clientHeight + parseFloat(computedLeftColumnStyle.marginTop) + parseFloat(computedLeftColumnStyle.marginBottom);
-                
-                // NEWSセクションのパディングと見出しの高さを取得
-                const newsH2 = newsSection.querySelector('h2');
-                const computedNewsStyle = getComputedStyle(newsSection);
-                const newsPaddingTop = parseFloat(computedNewsStyle.paddingTop);
-                const newsPaddingBottom = parseFloat(computedNewsStyle.paddingBottom);
-                const newsH2Height = newsH2 ? newsH2.offsetHeight + parseFloat(getComputedStyle(newsH2).marginBottom) : 0;
+            const adjustNewsHeight = () => {
+                const pluginsBottom = pluginsSection.getBoundingClientRect().bottom;
+                const newsRect = newsSection.getBoundingClientRect();
+                const newsSectionTop = newsRect.top;
+                const newsH2Height = newsSection.querySelector('h2').offsetHeight;
+                const newsPaddingTop = parseFloat(getComputedStyle(newsSection).paddingTop);
+                const newsPaddingBottom = parseFloat(getComputedStyle(newsSection).paddingBottom);
 
-                // NEWSコンテンツが利用できる最大高さを設定
-                // left-column の高さに合わせ、NEWSセクション自体のパディングと見出しの高さを引く
-                const maxContentHeight = leftColumnHeight - newsPaddingTop - newsPaddingBottom - newsH2Height;
-                return maxContentHeight;
+                let availableHeight = pluginsBottom - newsSectionTop - newsH2Height - newsPaddingTop - newsPaddingBottom;
+
+                if (availableHeight < 0) {
+                    availableHeight = 0;
+                }
+
+                newsContentDiv.style.maxHeight = `${availableHeight}px`;
+
+                const newsDateGroups = newsContentDiv.querySelectorAll('.news-date-group');
+                newsDateGroups.forEach(group => {
+                    if (group.offsetTop + group.offsetHeight > newsContentDiv.clientHeight) {
+                        group.style.display = 'none'; 
+                    } else {
+                        group.style.display = ''; 
+                    }
+                });
             };
 
             const displayNews = (news) => {
-                const newsContentDiv = document.getElementById('news-content');
-                newsContentDiv.innerHTML = ''; // 既存のニュースをクリア
+                newsContentDiv.innerHTML = ''; 
 
                 if (news.length === 0) {
                     newsContentDiv.innerHTML = '<p>現在、新しいニュースはありません。</p>';
                     return;
                 }
 
-                // 日付で降順にソート (新しい順)
                 news.sort((a, b) => {
                     const getDateString = (dateStr) => {
                         const match = dateStr.match(/^(\d{4}\/\d{2}\/\d{2})/);
@@ -428,89 +418,21 @@
                     return dateB - dateA;
                 });
 
-                let newsToDisplay = [];
-                let currentHeight = 0;
-                const newsSectionMaxContentHeight = calculateNewsHeight();
-
-                // ニュースを仮で描画し、高さを計算して制限する
-                const tempDiv = document.createElement('div');
-                tempDiv.style.visibility = 'hidden';
-                tempDiv.style.position = 'absolute';
-                tempDiv.style.height = 'auto';
-                tempDiv.style.width = getComputedStyle(newsContentDiv).width; // NEWSコンテンツの幅を仮要素に適用
-                document.body.appendChild(tempDiv);
-
                 let currentGroupDate = null;
-
-                for (const item of news) {
-                    const dateMatch = item.date.match(/^(\d{4}\/\d{2}\/\d{2})/);
-                    const cleanItemDate = dateMatch ? dateMatch[1] : item.date;
-
-                    let tempGroupAdded = false;
-                    if (cleanItemDate !== currentGroupDate) {
-                        const tempDateGroup = document.createElement('div');
-                        tempDateGroup.classList.add('news-date-group');
-                        const tempDateHeading = document.createElement('div');
-                        tempDateHeading.classList.add('news-date-heading');
-                        const date = new Date(cleanItemDate.replace(/\//g, '-'));
-                        const options = { weekday: 'short' };
-                        const dayOfWeek = date.toLocaleDateString('ja-JP', options);
-                        tempDateHeading.textContent = `${cleanItemDate}(${dayOfWeek})`;
-                        tempDateGroup.appendChild(tempDateHeading);
-                        tempDiv.appendChild(tempDateGroup);
-                        currentGroupDate = cleanItemDate;
-                        tempGroupAdded = true;
-                    }
-
-                    const tempNewsItemDiv = document.createElement('div');
-                    tempNewsItemDiv.classList.add('news-item');
-                    const tempContentP = document.createElement('p');
-                    tempContentP.classList.add('news-content');
-
-                    if (item.important) {
-                        const tempImportantSpan = document.createElement('span');
-                        tempImportantSpan.classList.add('news-important');
-                        tempImportantSpan.textContent = '重要';
-                        tempContentP.appendChild(tempImportantSpan);
-                    }
-                    const contentText = item.content.replace(/\(\w+\)$/, '').trim();
-                    tempContentP.appendChild(document.createTextNode(contentText));
-                    tempNewsItemDiv.appendChild(tempContentP);
-                    tempDiv.appendChild(tempNewsItemDiv);
-
-                    // 仮DOMの高さを測定
-                    // ここで tempDiv の内容が確定し、その高さが計算されることを期待
-                    const heightAfterItem = tempDiv.scrollHeight; 
-
-                    if (heightAfterItem <= newsSectionMaxContentHeight) {
-                        newsToDisplay.push(item);
-                    } else {
-                        // 高さを超えたらループを抜ける
-                        break;
-                    }
-                }
-
-                // 仮DOMを削除
-                if (document.body.contains(tempDiv)) {
-                    document.body.removeChild(tempDiv);
-                }
-
-                // 実際に表示するニュースをレンダリング
-                currentGroupDate = null; // リセット
                 let actualCurrentGroupDiv = null;
 
-                newsToDisplay.forEach(item => {
+                news.forEach(item => {
                     const dateMatch = item.date.match(/^(\d{4}\/\d{2}\/\d{2})/);
                     const cleanItemDate = dateMatch ? dateMatch[1] : item.date;
 
                     if (cleanItemDate !== currentGroupDate) {
                         actualCurrentGroupDiv = document.createElement('div');
                         actualCurrentGroupDiv.classList.add('news-date-group');
-                        actualCurrentGroupDiv.dataset.groupDate = cleanItemDate; // カスタムデータ属性で日付を保持
+                        actualCurrentGroupDiv.dataset.groupDate = cleanItemDate; 
 
                         const dateHeading = document.createElement('div');
                         dateHeading.classList.add('news-date-heading');
-                        const date = new Date(cleanItemDate.replace(/\//g, '-'));
+                        const date = new Date(cleanItemDate.replace(/\
                         const options = { weekday: 'short' };
                         const dayOfWeek = date.toLocaleDateString('ja-JP', options);
                         dateHeading.textContent = `${cleanItemDate}(${dayOfWeek})`;
@@ -540,6 +462,7 @@
                         newsItemDiv.appendChild(contentP);
                     }
                 });
+                adjustNewsHeight(); 
             };
 
             const loadAndDisplayNews = () => {
@@ -555,32 +478,22 @@
                     })
                     .catch(error => {
                         console.error('ニュースの読み込み中にエラーが発生しました:', error);
-                        const newsContentDiv = document.getElementById('news-content');
                         newsContentDiv.innerHTML = '<p>ニュースの読み込みに失敗しました。</p>';
                     });
             };
-            
-            // 初回ロード時
+
             loadAndDisplayNews();
 
-            // left-column の高さが変更された際に NEWS の高さを再計算・再表示
-            const leftColumn = document.querySelector('.left-column');
-            observer = new ResizeObserver(entries => {
+            const observer = new ResizeObserver(entries => {
                 for (let entry of entries) {
-                    if (entry.target === leftColumn) {
-                        const newHeight = entry.contentRect.height;
-                        if (newsSectionInitialHeight === 0) {
-                            newsSectionInitialHeight = newHeight; // 初回高さを記録
-                        }
-                        // 高さの変化があった場合にのみ再表示
-                        if (newHeight !== newsSectionInitialHeight) {
-                             loadAndDisplayNews();
-                             newsSectionInitialHeight = newHeight;
-                        }
+                    if (entry.target === pluginsSection) {
+                        adjustNewsHeight();
                     }
                 }
             });
-            observer.observe(leftColumn);
+            observer.observe(pluginsSection);
+
+            window.addEventListener('resize', adjustNewsHeight);
         });
     </script>
 </body>
