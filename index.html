@@ -140,14 +140,13 @@
             display: grid;
             grid-template-columns: 3fr 1fr; 
             gap: 30px;
-            align-items: start; 
+            align-items: stretch; /* Stretch columns to match height */
         }
 
         .left-column {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-
             grid-auto-rows: minmax(min-content, max-content);
         }
 
@@ -229,12 +228,10 @@
         #news {
             display: flex;
             flex-direction: column;
-            overflow: hidden; 
         }
         #news-content {
-            flex-grow: 1;
-            position: relative;
-            overflow: hidden; 
+            flex-grow: 1; 
+            overflow-y: auto; /* Add scrollbar if content overflows */
         }
         .news-date-group {
             margin-bottom: 20px;
@@ -338,7 +335,7 @@
                             <li><strong>統合版サーバーIP:</strong> <span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);">tockey.f5.si, ポート19132</span></li>
                             <li><strong>バージョン:</strong> Paper 1.21.4 (参加自体は1.17～最新バージョンまで可能)</li>
                             <li><strong>対応プラットフォーム:</strong> Java版, 統合版</li>
-                            <li><strong>稼働時間:</b> 基本的には24時間365日</li>
+                            <li><strong>稼働時間:</strong> 基本的には24時間365日</li>
                             <li><strong>サーバー再起動:</strong> 毎日12:00と0:00</li>
                         </ul>
                         <p>その他、ご不明な点がありましたらDiscordにてお気軽にお問い合わせください。</p>
@@ -365,53 +362,18 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Tockey Server. All rights reserved.</p>
+        <p>© 2025 Tockey Server. All rights reserved.</p>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const newsSection = document.getElementById('news');
             const newsContentDiv = document.getElementById('news-content');
-            const pluginsSection = document.getElementById('plugins');
-
-            const adjustNewsHeight = () => {
-
-                const pluginsRect = pluginsSection.getBoundingClientRect();
-                const pluginsBottom = pluginsRect.bottom;
-
-                const newsRect = newsSection.getBoundingClientRect();
-                const newsSectionTop = newsRect.top;
-                const newsH2 = newsSection.querySelector('h2');
-                const newsH2Height = newsH2 ? newsH2.offsetHeight + parseFloat(getComputedStyle(newsH2).marginBottom) : 0;
-                const newsPaddingTop = parseFloat(getComputedStyle(newsSection).paddingTop);
-                const newsPaddingBottom = parseFloat(getComputedStyle(newsSection).paddingBottom);
-
-                let availableHeight = pluginsBottom - newsSectionTop - newsH2Height - newsPaddingTop - newsPaddingBottom;
-
-                if (availableHeight < 0) {
-                    availableHeight = 0;
-                }
-
-                newsContentDiv.style.maxHeight = `${availableHeight}px`;
-
-                const newsDateGroups = newsContentDiv.querySelectorAll('.news-date-group');
-                newsDateGroups.forEach(group => {
-
-                    if (group.offsetTop + group.offsetHeight > newsContentDiv.clientHeight + newsContentDiv.scrollTop) {
-                        group.style.display = 'none'; 
-                    } else {
-                        group.style.display = ''; 
-                    }
-                });
-            };
 
             const displayNews = (news) => {
                 newsContentDiv.innerHTML = ''; 
 
                 if (news.length === 0) {
                     newsContentDiv.innerHTML = '<p>現在、新しいニュースはありません。</p>';
-
-                    adjustNewsHeight();
                     return;
                 }
 
@@ -474,8 +436,6 @@
                         newsItemDiv.appendChild(contentP);
                     }
                 });
-
-                adjustNewsHeight();
             };
 
             const loadAndDisplayNews = () => {
@@ -492,23 +452,10 @@
                     .catch(error => {
                         console.error('ニュースの読み込み中にエラーが発生しました:', error);
                         newsContentDiv.innerHTML = '<p>ニュースの読み込みに失敗しました。</p>';
-
-                        adjustNewsHeight();
                     });
             };
 
             loadAndDisplayNews();
-
-            const observer = new ResizeObserver(entries => {
-                for (let entry of entries) {
-                    if (entry.target === pluginsSection) {
-                        adjustNewsHeight();
-                    }
-                }
-            });
-            observer.observe(pluginsSection);
-
-            window.addEventListener('resize', adjustNewsHeight);
         });
     </script>
 </body>
