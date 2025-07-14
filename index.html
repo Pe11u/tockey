@@ -140,14 +140,13 @@
             display: grid;
             grid-template-columns: 3fr 1fr; 
             gap: 30px;
-            align-items: start; 
+            align-items: stretch;
         }
 
         .left-column {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: 1fr 1fr; 
             gap: 30px;
-
             grid-auto-rows: minmax(min-content, max-content);
         }
 
@@ -168,7 +167,7 @@
         }
 
         #plugins {
-            grid-column: 1 / -1;
+            grid-column: span 2; 
         }
         .section h2 {
             color: var(--heading-color);
