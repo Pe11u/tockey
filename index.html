@@ -475,7 +475,8 @@
             };
 
             const loadAndDisplayNews = () => {
-                fetch('news.json')
+                const newsUrl = 'news.json?' + new Date().getTime();
+                fetch(newsUrl)
                     .then(response => {
                         if (!response.ok) {
                             throw new Error('news.jsonの読み込みに失敗しました: ' + response.statusText);
@@ -488,7 +489,6 @@
                     .catch(error => {
                         console.error('ニュースの読み込み中にエラーが発生しました:', error);
                         newsContentDiv.innerHTML = '<p>ニュースの読み込みに失敗しました。</p>';
-
                         adjustNewsHeight();
                     });
             };
