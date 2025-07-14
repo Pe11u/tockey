@@ -438,7 +438,7 @@
 
                         const dateHeading = document.createElement('div');
                         dateHeading.classList.add('news-date-heading');
-                        const date = new Date(cleanItemDate.replace(/\
+                        const date = new Date(cleanItemDate.replace(/\//g, '-'));
                         const options = { weekday: 'short' };
                         const dayOfWeek = date.toLocaleDateString('ja-JP', options);
                         dateHeading.textContent = `${cleanItemDate}(${dayOfWeek})`;
