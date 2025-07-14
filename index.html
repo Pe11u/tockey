@@ -230,7 +230,6 @@
             display: flex;
             flex-direction: column;
             overflow: hidden; 
-
         }
         #news-content {
             flex-grow: 1;
@@ -370,10 +369,14 @@
             const pluginsSection = document.getElementById('plugins');
 
             const adjustNewsHeight = () => {
-                const pluginsBottom = pluginsSection.getBoundingClientRect().bottom;
+
+                const pluginsRect = pluginsSection.getBoundingClientRect();
+                const pluginsBottom = pluginsRect.bottom;
+
                 const newsRect = newsSection.getBoundingClientRect();
                 const newsSectionTop = newsRect.top;
-                const newsH2Height = newsSection.querySelector('h2').offsetHeight;
+                const newsH2 = newsSection.querySelector('h2');
+                const newsH2Height = newsH2 ? newsH2.offsetHeight + parseFloat(getComputedStyle(newsH2).marginBottom) : 0;
                 const newsPaddingTop = parseFloat(getComputedStyle(newsSection).paddingTop);
                 const newsPaddingBottom = parseFloat(getComputedStyle(newsSection).paddingBottom);
 
@@ -387,7 +390,8 @@
 
                 const newsDateGroups = newsContentDiv.querySelectorAll('.news-date-group');
                 newsDateGroups.forEach(group => {
-                    if (group.offsetTop + group.offsetHeight > newsContentDiv.clientHeight) {
+
+                    if (group.offsetTop + group.offsetHeight > newsContentDiv.clientHeight + newsContentDiv.scrollTop) {
                         group.style.display = 'none'; 
                     } else {
                         group.style.display = ''; 
@@ -400,6 +404,8 @@
 
                 if (news.length === 0) {
                     newsContentDiv.innerHTML = '<p>現在、新しいニュースはありません。</p>';
+
+                    adjustNewsHeight();
                     return;
                 }
 
@@ -462,7 +468,8 @@
                         newsItemDiv.appendChild(contentP);
                     }
                 });
-                adjustNewsHeight(); 
+
+                adjustNewsHeight();
             };
 
             const loadAndDisplayNews = () => {
@@ -479,6 +486,8 @@
                     .catch(error => {
                         console.error('ニュースの読み込み中にエラーが発生しました:', error);
                         newsContentDiv.innerHTML = '<p>ニュースの読み込みに失敗しました。</p>';
+
+                        adjustNewsHeight();
                     });
             };
 
