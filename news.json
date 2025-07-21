@@ -18,5 +18,15 @@
     "date": "2025/07/15(火)",
     "content": "ニュースのアルゴリズムが変更されました",
     "important": false
+  },
+  {
+    "date": "2025/07/20(日)",
+    "content": "Discordの<span style="font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);"> #選挙🗳️ </span>チャンネルでプレイヤーがサーバーのルールを変更できるようになりました",
+    "important": true
+  },
+  {
+    "date": "2025/07/21(月)",
+    "content": "<a href="https://hetrixtools.com/report/uptime/adf6a64a16d21b2bfde64897d9f69e32/>このウェブサイト</a>で、詳しいサーバーのアップタイム情報を閲覧できるようになりました" target="_blank">",
+    "important": true
   }
 ]
