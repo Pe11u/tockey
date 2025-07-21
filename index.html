@@ -363,36 +363,33 @@
     <footer>
         <p>&copy; 2025 Tockey Server. All rights reserved.</p>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const newsSection = document.getElementById('news');
             const newsContentDiv = document.getElementById('news-content');
             const pluginsSection = document.getElementById('plugins');
-
+    
             const adjustNewsHeight = () => {
-
                 const pluginsRect = pluginsSection.getBoundingClientRect();
                 const pluginsBottom = pluginsRect.bottom;
-
+    
                 const newsRect = newsSection.getBoundingClientRect();
                 const newsSectionTop = newsRect.top;
                 const newsH2 = newsSection.querySelector('h2');
                 const newsH2Height = newsH2 ? newsH2.offsetHeight + parseFloat(getComputedStyle(newsH2).marginBottom) : 0;
                 const newsPaddingTop = parseFloat(getComputedStyle(newsSection).paddingTop);
                 const newsPaddingBottom = parseFloat(getComputedStyle(newsSection).paddingBottom);
-
+    
                 let availableHeight = pluginsBottom - newsSectionTop - newsH2Height - newsPaddingTop - newsPaddingBottom;
-
+    
                 if (availableHeight < 0) {
                     availableHeight = 0;
                 }
-
+    
                 newsContentDiv.style.maxHeight = `${availableHeight}px`;
-
+    
                 const newsDateGroups = newsContentDiv.querySelectorAll('.news-date-group');
                 newsDateGroups.forEach(group => {
-
                     if (group.offsetTop + group.offsetHeight > newsContentDiv.clientHeight + newsContentDiv.scrollTop) {
                         group.style.display = 'none'; 
                     } else {
@@ -400,17 +397,16 @@
                     }
                 });
             };
-
+    
             const displayNews = (news) => {
                 newsContentDiv.innerHTML = ''; 
-
+    
                 if (news.length === 0) {
                     newsContentDiv.innerHTML = '<p>現在、新しいニュースはありません。</p>';
-
                     adjustNewsHeight();
                     return;
                 }
-
+    
                 news.sort((a, b) => {
                     const getDateString = (dateStr) => {
                         const match = dateStr.match(/^(\d{4}\/\d{2}\/\d{2})/);
@@ -425,55 +421,59 @@
                     const dateB = new Date(getDateString(b.date));
                     return dateB - dateA;
                 });
-
+    
                 let currentGroupDate = null;
                 let actualCurrentGroupDiv = null;
-
+    
                 news.forEach(item => {
                     const dateMatch = item.date.match(/^(\d{4}\/\d{2}\/\d{2})/);
                     const cleanItemDate = dateMatch ? dateMatch[1] : item.date;
-
+    
                     if (cleanItemDate !== currentGroupDate) {
                         actualCurrentGroupDiv = document.createElement('div');
                         actualCurrentGroupDiv.classList.add('news-date-group');
                         actualCurrentGroupDiv.dataset.groupDate = cleanItemDate; 
-
+    
                         const dateHeading = document.createElement('div');
                         dateHeading.classList.add('news-date-heading');
                         const date = new Date(cleanItemDate.replace(/\//g, '-'));
                         const options = { weekday: 'short' };
-                        const dayOfWeek = date.toLocaleDateString('ja-JP', options);
+                        const dayOfWeek = new Intl.DateTimeFormat('ja-JP', options).format(date);
                         dateHeading.textContent = `${cleanItemDate}(${dayOfWeek})`;
-
+    
                         actualCurrentGroupDiv.appendChild(dateHeading);
                         newsContentDiv.appendChild(actualCurrentGroupDiv);
                         currentGroupDate = cleanItemDate;
                     }
-
+    
                     const newsItemDiv = document.createElement('div');
                     newsItemDiv.classList.add('news-item');
-
+    
                     const contentP = document.createElement('p');
                     contentP.classList.add('news-content');
-
+    
                     if (item.important) {
                         const importantSpan = document.createElement('span');
                         importantSpan.classList.add('news-important');
                         importantSpan.textContent = '重要';
                         contentP.appendChild(importantSpan);
                     }
-                    const contentText = item.content.replace(/\(\w+\)$/, '').trim();
-                    contentP.appendChild(document.createTextNode(contentText));
-
+                    
+                    // === ここを修正しました ===
+                    const contentSpan = document.createElement('span');
+                    contentSpan.innerHTML = item.content; // innerHTMLでHTMLとして解釈させる
+                    contentP.appendChild(contentSpan);
+                    // ========================
+    
                     if (actualCurrentGroupDiv) {
                         actualCurrentGroupDiv.appendChild(newsItemDiv);
                         newsItemDiv.appendChild(contentP);
                     }
                 });
-
+    
                 adjustNewsHeight();
             };
-
+    
             const loadAndDisplayNews = () => {
                 const newsUrl = 'news.json?' + new Date().getTime();
                 fetch(newsUrl)
@@ -492,9 +492,9 @@
                         adjustNewsHeight();
                     });
             };
-
+    
             loadAndDisplayNews();
-
+    
             const observer = new ResizeObserver(entries => {
                 for (let entry of entries) {
                     if (entry.target === pluginsSection) {
@@ -503,7 +503,7 @@
                 }
             });
             observer.observe(pluginsSection);
-
+    
             window.addEventListener('resize', adjustNewsHeight);
         });
     </script>
