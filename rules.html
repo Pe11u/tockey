@@ -156,6 +156,29 @@
             color: var(--link-hover-color);
             text-decoration: underline;
         }
+        .rules-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 1px solid black;
+            border-radius: 8px;
+            overflow: hidden; /* 角の丸みを維持するため */
+            margin-top: 20px;
+        }
+        .rules-table th, .rules-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid black;
+        }
+        .rules-table th:first-child, .rules-table td:first-child {
+            border-right: 1px solid black;
+            font-weight: 700;
+            background-color: var(--light-accent-color);
+            width: 80px; /* 「許可」「禁止」セルの幅を固定 */
+        }
+        .rules-table tr:last-child td {
+            border-bottom: none;
+        }
         footer {
             background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
             color: black;
@@ -204,12 +227,24 @@
                 <p>すべてのプレイヤーが快適に過ごせる、健全なコミュニティを維持するためのルールです。</p>
 
                 <h3>公正なプレイの徹底</h3>
-                <p>ゲームの公平性を著しく損なう以下の行為は、<strong>一切禁止</strong>です。</p>
-                <ul>
-                    <li><strong>不正なツールやMODの使用:</strong> チートクライアント、X-ray、Auto-Mine、Kill-Auraなど、ゲームプレイを不正に有利にする外部ツールやMODの使用。</li>
-                    <li><strong>バグやグリッチの悪用:</strong> アイテム増殖、ブロック透過、無敵化など、ゲーム内の意図しない不具合を悪用する行為。発見した場合は悪用せず、速やかに運営に報告してください。</li>
-                    <li><strong>AFK放置による不正な利益取得:</strong> AFK（Away From Keyboard）状態で自動釣り機や天空トラップタワーなどを長時間利用し、サーバーリソースを占有しながら一方的に利益を得る行為はご遠慮ください。</li>
-                </ul>
+                <p>ゲームの公平性を著しく損なう外部ツール、MOD、および行為に関するガイドラインです。</p>
+                
+                <table class="rules-table">
+                    <tbody>
+                        <tr>
+                            <td>許可</td>
+                            <td>Sprint, Step, AutoSoup, AutoTool, FastPlace, Waypoints, Coords, HUD, HealthBar, Block/Entity Outline, Panic, ConfigSaver, FriendManager, AutoParkour, NoHurtCam</td>
+                        </tr>
+                        <tr>
+                            <td>禁止</td>
+                            <td>Fly, BoatFly, Speed, Bhop, Scaffold, Spider, Jesus, NoFall, HighJump, LongJump, NoClip(Phase), NoSlow, Glide, LadderClimb, AntiWeb, AirWalk, ElytraFly, Teleport, Aura系統, AntiKnockback, Criticals, AutoClicker, AimBot, ReachHack, Velocity, HitBoxes, ESP系統, Tracers, Refill, BowAimbot, AntiAim, TargetStrafe, FastBow, TriggerBot, AntiBot, NoSlowDown, AntiHunger, AUtoGapple, FastPlace, LegitCombat, Surround, X-Ray, Wallhack, Chams, Freecam, Traps, Search, AntiBlind, NoWeather, ChestStealer, AUtoMine, AutoFarm, Spammer, Timer, AutoWalk, ServerCrasher, PacketSpoofer, Baritone, InvManager, CivBreak, AutoLoot, FastEat, AutoBreed, AutoDisconnect, AntiVoid, AutoBUild, PingSpoof, ForceChunkLoad, NoRender, GhostHand, LagDetector, AntiSpam, ChatBypass, Dupe, Exploit. AntiFire, FastLadder, LavaWalk, AntiCanish, AntiLiquid</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 15px;">リストにないものでも、運営がゲームの公平性を損なうと判断した場合は処罰の対象となります。</p>
+
+                <h4>バグやグリッチの悪用禁止</h4>
+                <p>アイテム増殖、ブロック透過、無敵化など、ゲーム内の意図しない不具合を悪用する行為は禁止です。発見した場合は悪用せず、速やかに運営に報告してください。</p>
 
                 <h3>他者への敬意と迷惑行為の禁止</h3>
                 <p>すべてのプレイヤーは、お互いに敬意を持って接してください。以下の迷惑行為を禁止します。</p>
