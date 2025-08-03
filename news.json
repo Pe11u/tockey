@@ -33,5 +33,10 @@
     "date": "2025/07/26(土)",
     "content": "ルールが大幅に変更されました",
     "important": true
+  },
+  {
+    "date": "2025/08/01(金)",
+    "content": "<span style=\"font-family: 'Montserrat', monospace; font-weight: bold; color: var(--heading-color);\">/blockhistory history [ブロック座標]</span>でだれでもブロックの破壊・設置・編集履歴が確認できるようになりました",
+    "important": false
   }
 ]
