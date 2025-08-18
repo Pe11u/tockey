@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tockey Server - HOME</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="tockey.png" type="image/png">
+    <style>
+        :root {
+            --main-bg-start: #e0f2f7;
+            --main-bg-end: #eafbea;
+            --header-footer-bg-start: rgba(220, 255, 220, 0.9);
+            --header-footer-bg-end: rgba(220, 255, 220, 0.9);
+            --text-color: #333;
+            --heading-color: #2c3e50;
+            --accent-color: #4CAF50;
+            --light-accent-color: #d1f7d3;
+            --border-radius: 8px;
+            --card-bg-color: rgba(255, 255, 255, 0.85);
+            --card-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            --link-color: #2196F3;
+            --link-hover-color: #1976D2;
+            --important-bg-color: #e57373;
+            --important-text-color: #fff;
+        }
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, var(--main-bg-start), var(--main-bg-end));
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background: linear-gradient(to right, var(--header-footer-bg-start), var(--header-footer-bg-end));
+            color: black;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(3px);
+        }
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            font-weight: 700;
+            color: black;
+            text-decoration: none;
+            margin-right: auto;
+            white-space: nowrap;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        header nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 700;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+        }
+        header nav a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-color);
+        }
+        .hero {
+            background: url('tockey.png');
+            background-size: cover;
+            background-position: center center;
+            color: white;
+            padding: 100px 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 550px;
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('tockey.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.8em;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: left;
+            max-width: 1200px;
+            padding-left: 5%;
+            line-height: 1.1;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            max-width: 1125px;
+            margin-top: 0;
+            margin-left: 5%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        #search-container {
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          z-index: 1000;
+        }
+        #searchInput {
+          padding: 10px 15px;
+          font-size: 16px;
+          border: 2px solid #005bb5;
+          border-radius: 30px;
+          outline: none;
+          transition: all 0.3s ease;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          background-color: #fff;
+        }
+        #searchInput:focus {
+          border-color: #ff6f61;
+          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        header {
+          background-color: #333;
+          color: white;
+          padding: 20px;
+          text-align: center;
+        }
+        header h1 {
+          margin: 0;
+        }
+        nav ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        nav ul li {
+          display: inline;
+          margin: 0 10px;
+        }
+        nav ul li a {
+          color: white;
+          text-decoration: none;
+          font-size: 16px;
+        }
+        nav ul li a:hover {
+          text-decoration: underline;
+        }
+        main {
+          max-width: 1200px;
+          margin: 2rem auto;
+          padding: 1rem;
+          background: rgba(255, 255, 255, 0.4);
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+        h2 {
+          border-bottom: 2px solid #ff6f61;
+          padding-bottom: 0.5rem;
+          margin-bottom: 1rem;
+        }
+        ul {
+          list-style-type: none;
+          padding: 0;
+        }
+        ul li {
+          background: rgba(255, 255, 255, 0.2);
+          margin: 0.5rem 0;
+          padding: 0.75rem;
+          border-radius: 4px;
+          transition: background 0.3s;
+        }
+        ul li:hover {
+          background: rgba(255, 255, 255, 0.3);
+        }
+        .command-list li {
+          overflow: hidden;
+          transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.3s ease;
+          max-height: 500px;
+        }
+        .command-list li.hidden {
+          opacity: 0;
+          transform: scale(0.95);
+          max-height: 0;
+          pointer-events: none;
+        }
+        .button-container {
+          text-align: center;
+          margin-top: 1.5rem;
+        }
+        .button {
+          display: inline-block;
+          padding: 0.75rem 1.5rem;
+          background: #ff6f61;
+          color: #fff;
+          text-decoration: none;
+          font-weight: bold;
+          border-radius: 4px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+          transition: background 0.3s, transform 0.3s;
+        }
+        .button:hover {
+          background: #ff867f;
+          transform: scale(1.05);
+        }
+        p {
+          margin: 1rem 0;
+        }
+        .command-list li {
+          background: #e9f5ff;
+          padding: 15px;
+          margin: 10px 0;
+          border-radius: 8px;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        strong {
+          display: block;
+          font-size: 1.2em;
+          color: #005bb5;
+          margin-bottom: 5px;
+        }
+        .command-description {
+          margin-top: 5px;
+          padding-left: 10px;
+          font-size: 0.95em;
+          color: #555;
+        }
+        .command-list ul {
+          list-style-type: none;
+          padding-left: 0;
+          background: rgba(255, 255, 255, 0.6);
+        }
+        .fade {
+          font-style: italic;
+          opacity: 0.75;
+          color: #005bb5;
+          font-weight: normal;
+          display: inline;
+        }
+        footer {
+          background-color: #333;
+          color: white;
+          padding: 10px;
+          text-align: center;
+          position: fixed;
+          width: 100%;
+          bottom: 0;
+        }
+        footer p {
+          margin: 0;
+        }
+        footer a {
+          color: #1e90ff;
+          text-decoration: none;
+        }
+        footer a:hover {
+          text-decoration: underline;
+        }
+        .command-list li {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .command-list li[style*="display: none"] {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .command-section {
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .command-section[style*="display: none"] {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+ <body>
+  <div id="search-container">
+    <input type="text" id="searchInput" placeholder="コマンドを検索…">
+  </div>
+    <header>
+        <a href="#" class="logo">Tockey Server</a>
+        <nav>
+            <a href="rules.html">ルール</a>
+            <a href="commands.html" class="active">コマンド</a>
+            <a href="terms.html">利用規約</a>
+        </nav>
+    </header>
+  <main>
+    <section>
+      <h2>基本コマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="tpa,テレポート,要求">
+          <strong>/tpa <span class="fade">[プレイヤー名]</span></strong>
+          <span class="command-description">指定したユーザーにテレポート要求を送信<br><span class="fade">/tpa Notch</span></span>
+          <ul class="command-description">
+            <li><strong>プレイヤー名</strong>テレポートするプレイヤーの名前を入力</li>
+          </ul>
+        </li>
+        <li data-keywords="tpaccept,tpa,テレポート,承認,承諾">
+          <strong>/tpaccept</strong>
+          <span class="command-description">現在送信されているtpa要求を承認</span>
+        </li>
+        <li data-keywords="tpaccept,tpa,テレポート,拒否,却下">
+          <strong>/tpdeny</strong>
+          <span class="command-description">現在送信されているtpa要求を拒否</span>
+        </li>
+        <li data-keywords="clan,クラン,家,ホーム,帰還">
+          <strong>/clan home</strong>
+          <span class="command-description">クランに設定されているホームにテレポート</span>
+        </li>
+        <li data-keywords="ally,クランチャット,チャット">
+          <strong>/ally <span class="fade">[join/leave]</span></strong>
+          <span class="command-description">クランメンバーにしか見えないチャットに参加・退出</span>
+          <ul class="command-description">
+            <li><strong>join</strong>クランチャットに参加</li>
+            <li><strong>leave</strong>クランチャットから退出し、普通のチャットに戻る</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>Simple TPA</h2>
+      <ul class="command-list">
+        <li data-keywords="tpa,テレポート,要求">
+          <strong>/tpa <span class="fade">[プレイヤー名]</span></strong>
+          <span class="command-description">指定したユーザーにテレポート要求を送信<br><span class="fade">/tpa Notch</span></span>
+          <ul class="command-description">
+            <li><strong>プレイヤー名</strong>テレポートするプレイヤーの名前を入力</li>
+          </ul>
+        </li>
+        <li data-keywords="tpaccept,tpa,テレポート,承認,承諾">
+          <strong>/tpaccept</strong>
+          <span class="command-description">現在送信されているtpa要求を承認</span>
+        </li>
+        <li data-keywords="tpaccept,tpa,テレポート,拒否,却下">
+          <strong>/tpdeny</strong>
+          <span class="command-description">現在送信されているtpa要求を拒否</span>
+        </li>
+        <li data-keywords="tpahere,tpa,テレポート,テレポート先,要求">
+          <strong>/tpahere <span class="fade">[プレイヤー名]</span></strong>
+          <span class="command-description">指定したユーザーを自分にテレポートさせる要求を送信<br><span class="fade">/tpahere Notch</span></span>
+          <ul class="command-description">
+            <li><strong>プレイヤー名</strong>テレポートさせるプレイヤーの名前を入力</li>
+          </ul>
+        </li>
+        <li data-keywords="tpahereall,tpahere,tpa,テレポート,テレポート先,要求,全員">
+          <strong>/tpahereall</strong>
+          <span class="command-description">ユーザーを自分にテレポートさせる要求を全員に送信</span>
+        </li>
+        <li data-keywords="back,tpa,テレポート,戻る,帰還">
+          <strong>/back</strong>
+          <span class="command-description">テレポート前の場所まで戻る　<span class="fade">/clan home</span>と併用するとバグるので注意</span>
+        </li>
+        <li data-keywords="tpauto,自動承認,tpa,テレポート,承認">
+          <strong>/tpauto</strong>
+          <span class="command-description">届いたテレポート要求の自動承認をトグル</span>
+        </li>
+        <li data-keywords="tpatoggle,tpa,テレポート,拒否,却下,承認,承諾">
+          <strong>/tpatoggle</strong>
+          <span class="command-description">テレポート要求の受信拒否をトグル</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>情報コマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="info,情報,ユーザー,サーバー,チャンネル">
+          <strong>t?info <span class="fade">項目１</span> <span class="fade">項目２</span></strong>
+          <span class="command-description">ユーザー、チャンネル、サーバーの情報を表示<br><span class="fade">t?info user @taru</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (user, channel, server)</li>
+            <li><strong>項目２（条件）</strong>userの場合、対象ユーザーのメンション</li>
+          </ul>
+        </li>
+        <li data-keywords="icon,アイコン,表示,画像">
+          <strong>t?icon <span class="fade">項目１</span> <span class="fade">項目２</span></strong>
+          <span class="command-description">ユーザー、サーバーのアイコンを表示<br><span class="fade">t?icon user @taru</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (user, server)</li>
+            <li><strong>項目２（条件）</strong>userの場合、対象ユーザーのメンション</li>
+          </ul>
+        </li>
+        <li data-keywords="role,ロール,所属,確認,役職">
+          <strong>t?role <span class="fade">項目１</span> <span class="fade">項目２</span></strong>
+          <span class="command-description">ユーザーの所属ロールおよびロール内のユーザーを確認<br><span class="fade">t?role check @taru</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (member, check)</li>
+            <li><strong>項目２（条件）</strong>memberの場合、対象ユーザー、checkの場合、対象ロール</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>技術コマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="zishin,eq,earthquake,地震,津波,情報">
+          <strong>t?zishin</strong>
+          <span class="command-description">最新の日本での地震・津波情報を表示 (t?eq, t?earthquakeでも可)</span>
+        </li>
+        <li data-keywords="train,列車,遅延,電車,地下鉄,鉄道">
+          <strong>t?train</strong>
+          <span class="command-description">最新の列車遅延状況を表示</span>
+        </li>
+        <li data-keywords="qr,QRコード,変換">
+          <strong>t?qr <span class="fade">項目１</span></strong>
+          <span class="command-description">文字列をQRコードに変換<br><span class="fade">t?qr たるボット</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>変換する文字列</li>
+          </ul>
+        </li>
+        <li data-keywords="readqr,qr,QRコード,読み取り">
+          <strong>t?readqr</strong>
+          <span class="command-description">QRコード画像の読み取り (画像を添付して実行)</span>
+        </li>
+        <li data-keywords="forex,為替,外貨,日本円,円">
+          <strong>t?forex <span class="fade">項目１ 項目２</span></strong>
+          <span class="command-description">外貨と日本円の為替を表示<br><span class="fade">t?forex usd 100</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>変換先の通貨コード</li>
+            <li><strong>項目２</strong>日本円の金額</li>
+          </ul>
+        </li>
+        <li data-keywords="ipconfig,IP,アドレス">
+          <strong>t?ipconfig <span class="fade">項目１</span></strong>
+          <span class="command-description">IPアドレス情報を表示<br><span class="fade">t?ipconfig 8.8.8.8</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>IPv4またはIPv6のIPアドレス</li>
+          </ul>
+        </li>
+        <li data-keywords="base64,Base64,encode,decode,変換,文字列,エンコード,デコード">
+          <strong>t?base64 <span class="fade">項目１</span> <span class="fade">項目２</span></strong>
+          <span class="command-description">文字列をBase64に変換 (Base32, Base58にも対応)<br><span class="fade">t?base64 encode たるボット</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (encode: 符号化, decode: 復号)</li>
+            <li><strong>項目２</strong>変換する文字列</li>
+          </ul>
+        </li>
+        <li data-keywords="percent,Percent,encode,decode,変換,文字列,エンコード,デコード">
+          <strong>t?percent <span class="fade">項目１</span> <span class="fade">項目２</span></strong>
+          <span class="command-description">文字列をPercentに変換<br><span class="fade">t?ppercent encode たるボット</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (encode: 符号化, decode: 復号)</li>
+            <li><strong>項目２</strong>変換する文字列</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>VCコマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="play,再生,YouTube,音声,音楽,プレイ">
+          <strong>t?play <span class="fade">項目１</span></strong>
+          <span class="command-description">YouTube動画音声を再生<br><span class="fade">t?play https://www.youtube.com/watch?v=dQw4w9WgXcQ</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>YouTube動画のリンク</li>
+          </ul>
+        </li>
+        <li data-keywords="skip,スキップ,曲,次">
+          <strong>t?skip</strong>
+          <span class="command-description">現在流れている曲をスキップ</span>
+        </li>
+        <li data-keywords="leave,退出,ボイスチャット">
+          <strong>t?leave</strong>
+          <span class="command-description">ボイスチャットから退出 (強制退出時は再起動まで使用不可)</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>経済コマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="work,働く,報酬,仕事,職業">
+          <strong>t?work</strong>
+          <span class="command-description">働いて報酬を得る</span>
+        </li>
+        <li data-keywords="crime,犯罪,罰金,報酬">
+          <strong>t?crime</strong>
+          <span class="command-description">犯罪を犯して報酬または罰金</span>
+        </li>
+        <li data-keywords="terrorism,テロ,テロリズム,犯罪,罰金,報酬,罰則">
+          <strong>t?terrorism</strong>
+          <span class="command-description">テロをして大きな報酬または大きな罰則</span>
+        </li>
+        <li data-keywords="balance,所持金,確認,お金">
+          <strong>t?balance</strong>
+          <span class="command-description">現在の所持金を表示</span>
+        </li>
+        <li data-keywords="leaderboard,ランキング,所持金,リーダーボード">
+          <strong>t?leaderboard <span class="fade">項目１</span></strong>
+          <span class="command-description">サーバー内・全体の所持金ランキングを表示<br><span class="fade">t?leaderboard local</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>オプション (local: サーバー内, global: 全体)</li>
+          </ul>
+        </li>
+        <li data-keywords="give,送金,お金">
+          <strong>t?give <span class="fade">項目１ 項目２</span></strong>
+          <span class="command-description">他ユーザーにお金を送金<br><span class="fade">t?give @taru 5000</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>送金先のメンションまたは名前</li>
+            <li><strong>項目２</strong>送金金額 (allで全額指定可)</li>
+          </ul>
+        </li>
+        <li data-keywords="blackjack,ブラックジャック,遊ぶ,賭け">
+          <strong>t?blackjack <span class="fade">項目１</span></strong>
+          <span class="command-description">ボットとブラックジャックを遊ぶ<br><span class="fade">t?blackjack 5000</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>賭け金額 (allで全額指定可)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>その他</h2>
+      <ul class="command-list">
+        <li data-keywords="dice,サイコロ,振る,乱数,ランダム">
+          <strong>t?dice <span class="fade">項目１ 項目２</span></strong>
+          <span class="command-description">サイコロを振る<br><span class="fade">t?dice 1d100 int</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>サイコロの面数と回数 (例: 1d100)</li>
+            <li><strong>項目２（任意）</strong>オプション (int: 整数, float: 四捨五入浮動小数点)</li>
+          </ul>
+        </li>
+        <li data-keywords="coinflip,コイン,投げる,ランダム,裏,表">
+          <strong>t?coinflip</strong>
+          <span class="command-description">コインを投げる</span>
+        </li>
+        <li data-keywords="janken,じゃんけん,遊ぶ">
+          <strong>t?janken</strong>
+          <span class="command-description">ボットとじゃんけんを遊ぶ</span>
+        </li>
+        <li data-keywords="today,今日,記念日,イベント,何の日">
+          <strong>t?today</strong>
+          <span class="command-description">今日が何の日かを表示する</span>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h2>ジョークコマンド</h2>
+      <ul class="command-list">
+        <li data-keywords="fart,おなら,VC,屁">
+          <strong>t?fart</strong>
+          <span class="command-description">VCに参加しておならをする</span>
+        </li>
+        <li data-keywords="kill,キル,ユーザー,攻撃,殺す">
+          <strong>t?kill <span class="fade">項目１ 項目２</span></strong>
+          <span class="command-description">ユーザーをキルする<br><span class="fade">t?kill @taru thunder</span></span>
+          <ul class="command-description">
+            <li><strong>項目１</strong>対象ユーザーのメンション</li>
+            <li><strong>項目２（任意）</strong>オプション (shoot, drowned, explode, fall, burn, lava, thunder, magic, froze, attack)</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p><span class="specialfont">©</span> 2025 たるボット運営 | <a href="terms_of_service.html">利用規約</a> | <a href="privacy_policy.html">プライバシーポリシー</a></p>
+  </footer>
+  <script>
+document.getElementById('searchInput').addEventListener('input', function() {
+    const query = this.value.toLowerCase();
+    
+    document.querySelectorAll('.command-list li').forEach(li => {
+        const keywords = li.getAttribute('data-keywords')?.toLowerCase() || '';
+        const matches = keywords.includes(query);
+        
+        if (matches) {
+            li.style.display = '';
+        } else {
+            const parent = li.closest('ul').parentElement; 
+            const parentKeywords = parent?.getAttribute('data-keywords')?.toLowerCase() || '';
+            
+            if (parentKeywords.includes(query)) {
+                li.style.display = '';
+            } else {
+                li.style.display = 'none';
+            }
+        }
+    });
+    document.querySelectorAll('.command-section').forEach(section => {
+        const commands = section.querySelectorAll('.command-list li');
+        const isAnyCommandVisible = Array.from(commands).some(li => li.style.display !== 'none');
+        
+        if (isAnyCommandVisible) {
+            section.style.display = '';
+        } else {
+            section.style.display = 'none';
+        }
+    });
+});
+
+  </script>
+</body>
+</html>
